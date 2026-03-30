@@ -3,62 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intellectus Uzbekistan TWA</title>
+    <title>Intellectus Uzbekistan</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="main-container">
-        <nav class="sidebar">
-            <div class="sidebar-icons">
-                <div class="icon active"></div>
-                <div class="icon"></div>
-                <div class="icon"></div>
-                <div class="icon"></div>
-            </div>
-        </nav>
-
-        <main class="content">
-            <header>
-                <div class="user-block">
-                    <img id="user_avatar" src="https://via.placeholder.com/30" alt="Avatar">
-                    <span id="user_name">Гость</span>
+    <div class="app-container">
+        <header class="gold-header">
+            <h1 class="main-title">Intellectus Uzbekistan</h1>
+            <div class="user-profile">
+                <div class="avatar-frame">
+                    <img id="user_avatar" src="https://via.placeholder.com/50" alt="User">
                 </div>
-            </header>
-
-            <div class="logo-area">
-                <div class="brain-logo">🧠</div>
-                <h1>Intellectus</h1>
-                <div class="flag">🇺🇿</div>
-            </div>
-
-            <div class="results-block">
-                <h2>РЕЗУЛЬТАТЫ ПРОВЕРОЧНОГО КВИЗА №1</h2>
-                <div class="answers-count">ВЕРНЫХ ОТВЕТОВ: <span>5/5</span></div>
-                
-                <div class="victory-block">
-                    <span class="confetti">✨</span>
-                    <span class="trophy">🏆</span>
-                    <span class="fire">🔥</span>
-                    <h3>ПОБЕДА!</h3>
-                    <div class="points">+250 БАЛЛОВ</div>
-                    <span class="confetti">✨</span>
-                </div>
-
-                <div class="title-block">
-                    <span class="medal">🥇</span>
-                    <h3>ТИТУЛ:</h3>
-                    <p>Самый лучший Юрист-Новичок</p>
+                <div class="user-data">
+                    <div id="user_name" class="gold-text">Artur</div>
+                    <div class="user-stats">
+                        <span>🏆 <b id="user_points">1,500</b> pts</span>
+                        <span class="level-tag">Уровень: <b id="user_level">Новичок</b></span>
+                    </div>
                 </div>
             </div>
+        </header>
 
-            <div class="subscription-block activated">
-                <h3>ПОДПИСКА <span class="status">ACTIVATED (GRANT)</span></h3>
-                <p>✔️ ИСПОЛЬЗОВАНИЕ ПРОЕКТА</p>
-                <p>✔️ ГРАНТ ВКЛЮЧЕН</p>
-            </div>
+        <div class="split-screen">
+            <section class="content-block category-block">
+                <h2 class="block-title">Список категорий</h2>
+                <div class="category-list">
+                    <button class="cat-item"><span>⚖️</span> Юридика</button>
+                    <button class="cat-item"><span>📜</span> История</button>
+                    <button class="cat-item"><span>📚</span> Литература</button>
+                    <button class="cat-item"><span>🌍</span> География</button>
+                    <button class="cat-item"><span>🚀</span> Астрономия</button>
+                    <button class="cat-item"><span>⚛️</span> Физика</button>
+                    <button class="cat-item"><span>🧪</span> Химия</button>
+                </div>
+            </section>
 
-            <button class="action-btn">К ОБРАЗОВАТЕЛЬНЫМ КАРТОЧКАМ</button>
-        </main>
+            <section class="content-block title-block">
+                <h2 class="block-title">Супер-титул</h2>
+                <p class="subtitle">Претенденты на "ПРОФЕССОР"</p>
+                <div class="leaderboard">
+                    <div class="leader-item">
+                        <span class="cat-name">Юридика:</span>
+                        <span class="leader-val">980 pts (98%)</span>
+                    </div>
+                    <div class="leader-item">
+                        <span class="cat-name">История:</span>
+                        <span class="leader-val">950 pts (95%)</span>
+                    </div>
+                    <div class="leader-item">
+                        <span class="cat-name">Астрономия:</span>
+                        <span class="leader-val">920 pts (92%)</span>
+                    </div>
+                    </div>
+            </section>
+        </div>
     </div>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
