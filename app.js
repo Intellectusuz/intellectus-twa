@@ -1,60 +1,95 @@
 const tg = window.Telegram.WebApp;
 tg.expand();
 
-let points = parseInt(localStorage.getItem('userPoints')) || 0;
-let currentQ = 0;
-let score = 0;
-let timer;
-
-const questions = {
+// БАЗА ЗНАНИЙ
+const DATABASE = {
     law: [
-        { q: "С какого возраста полная дееспособность в РУз?", a: ["16 лет", "18 лет", "21 год"], c: 1 },
-        { q: "Минимальный возраст для вступления в брак в РУз?", a: ["17 лет", "18 лет", "16 лет"], c: 1 }
+        { q: "Основной закон Республики Узбекистан?", a: ["Уголовный кодекс", "Конституция", "Гражданский кодекс"], c: 1 },
+        { q: "Срок полномочий Президента РУз?", a: ["5 лет", "7 лет", "10 лет"], c: 1 }
+    ],
+    history: [
+        { q: "В каком году Самарканд стал столицей империи Тимура?", a: ["1370", "1405", "1336"], c: 0 }
     ]
 };
 
-function updateUI() {
+let userPoints = parseInt(localStorage.getItem('points')) || 0;
+let currentCat = '';
+let currentQ = 0;
+let timer;
+
+// ИНИЦИАЛИЗАЦИЯ UI
+function init() {
     const user = tg.initDataUnsafe.user || { first_name: "Artur" };
     document.getElementById('user_name').innerText = user.first_name;
-    document.getElementById('user_points').innerText = points.toLocaleString();
-    
-    let progress = Math.min((points / 6000) * 100, 100);
-    document.getElementById('total-progress-bar').style.width = progress + "%";
-    document.getElementById('progress-percent').innerText = Math.round(progress) + "%";
-    
-    let title = "НОВИЧОК";
-    if (points >= 1000) title = "УЧЕНИК";
-    if (points >= 3000) title = "МАГИСТР";
-    if (points >= 5000) title = "ПРОФЕССОР";
-    document.getElementById('current-title-display').innerText = title;
+    updateProgress();
 }
 
-function startQuiz(cat) {
-    currentQ = 0; score = 0;
-    document.getElementById('quiz-screen').style.display = 'flex';
-    showQuestion(cat);
+function updateProgress() {
+    document.getElementById('user_points').innerText = userPoints.toLocaleString();
+    
+    let progress = Math.min((userPoints / 5000) * 100, 100);
+    document.getElementById('progress-fill').style.width = progress + '%';
+    document.getElementById('progress-percent').innerText = Math.round(progress) + '%';
+    
+    let rank = "НОВИЧОК";
+    if (userPoints > 1000) rank = "УЧЕНИК";
+    if (userPoints > 3000) rank = "МАГИСТР";
+    if (userPoints > 5000) rank = "ПРОФЕССОР";
+    document.getElementById('rank-title').innerText = rank;
 }
 
-function showQuestion(cat) {
-    const qList = questions[cat] || questions['law'];
-    if (currentQ >= qList.length) {
-        points += (score * 250);
-        localStorage.setItem('userPoints', points);
-        document.getElementById('quiz-screen').style.display = 'none';
-        updateUI();
+// ЛОГИКА ТЕСТА
+function openQuiz(cat) {
+    currentCat = cat;
+    currentQ = 0;
+    document.getElementById('quiz-modal').style.display = 'flex';
+    loadQuestion();
+}
+
+function loadQuestion() {
+    const questions = DATABASE[currentCat] || DATABASE['law'];
+    if (currentQ >= questions.length) {
+        finishQuiz();
         return;
     }
-    const q = qList[currentQ];
-    document.getElementById('question-text').innerText = q.q;
-    const container = document.getElementById('answer-options');
-    container.innerHTML = '';
-    q.a.forEach((opt, i) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.innerText = opt;
-        btn.onclick = () => { currentQ++; showQuestion(cat); };
-        container.appendChild(btn);
+    
+    const qData = questions[currentQ];
+    document.getElementById('question-text').innerText = qData.q;
+    const btnContainer = document.getElementById('answer-options');
+    btnContainer.innerHTML = '';
+    
+    qData.a.forEach((opt, i) => {
+        const b = document.createElement('button');
+        b.className = 'opt-btn';
+        b.innerText = opt;
+        b.onclick = () => { currentQ++; loadQuestion(); };
+        btnContainer.appendChild(b);
     });
+    
+    startTimer();
 }
 
-updateUI();
+function startTimer() {
+    let left = 10;
+    document.getElementById('quiz-timer').innerText = left;
+    clearInterval(timer);
+    timer = setInterval(() => {
+        left--;
+        document.getElementById('quiz-timer').innerText = left;
+        if (left <= 0) {
+            clearInterval(timer);
+            currentQ++;
+            loadQuestion();
+        }
+    }, 1000);
+}
+
+function finishQuiz() {
+    clearInterval(timer);
+    userPoints += 250; // Начисляем за прохождение
+    localStorage.setItem('points', userPoints);
+    document.getElementById('quiz-modal').style.display = 'none';
+    updateProgress();
+}
+
+init();
