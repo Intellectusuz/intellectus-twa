@@ -1,51 +1,194 @@
-body {
-    background: #0f0c29; /* Глубокий космос */
-    color: #ffffff;
-    font-family: 'Segoe UI', sans-serif;
+/* Основные стили */
+body, html {
     margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #0d0121; /* Очень темный фиолетовый */
+    color: white;
+    height: 100%;
+}
+
+.main-container {
+    display: flex;
+    height: 100%;
+}
+
+/* Боковое меню */
+.sidebar {
+    width: 60px;
+    background-color: #030303; /* Почти черный */
+    border-right: 1px solid #333;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    padding-top: 20px;
 }
 
-#app {
-    width: 90%;
-    max-width: 400px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.sidebar-icons .icon {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #555;
+    margin-bottom: 20px;
+    background-color: #222;
 }
 
+.sidebar-icons .icon.active {
+    background-color: #007bff; /* Синий для активного */
+}
+
+/* Основной контент */
+.content {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+/* Шапка */
 header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.user-block {
+    display: flex;
     align-items: center;
-    border-bottom: 1px solid #4facfe;
-    padding-bottom: 10px;
+    background-color: rgba(255,255,255,0.1);
+    padding: 5px 10px;
+    border-radius: 20px;
 }
 
-#timer {
+.user-block img {
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+/* Логотип */
+.logo-area {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.brain-logo {
     font-size: 24px;
-    color: #00ff88; /* Неоновый зеленый */
-    text-align: center;
-    margin: 10px 0;
+    margin-right: 10px;
 }
 
-.ans-btn {
+.logo-area h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.flag {
+    margin-left: auto;
+    font-size: 20px;
+}
+
+/* Блок результатов */
+.results-block {
+    background-color: #e6e6e6; /* Серый фон */
+    color: #333;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.results-block h2 {
+    text-align: center;
+    font-size: 16px;
+    margin: 0 0 10px;
+}
+
+.answers-count {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.answers-count span {
+    color: #000;
+}
+
+.victory-block, .title-block {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.victory-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.victory-block h3 {
+    color: #333;
+    font-size: 22px;
+    margin: 0;
+}
+
+.victory-block .points {
+    color: #000;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.title-block {
+    margin-top: 20px;
+}
+
+.title-block h3 {
+    color: #333;
+    font-size: 16px;
+    margin: 0;
+}
+
+.title-block p {
+    color: #000;
+    margin: 5px 0 0;
+}
+
+/* Блок подписки */
+.subscription-block {
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.subscription-block.activated {
+    border: 1px solid #10b981; /* Зеленый контур */
+    color: #10b981;
+}
+
+.subscription-block h3 {
+    margin: 0 0 10px;
+    font-size: 14px;
+}
+
+.subscription-block .status {
+    color: #34d399; /* Светло-зеленый */
+    font-size: 10px;
+    vertical-align: middle;
+}
+
+.subscription-block p {
+    margin: 5px 0;
+    font-size: 12px;
+}
+
+/* Кнопка */
+.action-btn {
     width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    background: #4facfe;
-    border: none;
-    border-radius: 10px;
+    background-color: #007bff; /* Синий */
     color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 20px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
 }
 
-.ans-btn:hover {
-    background: #00f2fe;
+.action-btn:hover {
+    background-color: #0069d9;
 }
