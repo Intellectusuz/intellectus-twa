@@ -1,97 +1,73 @@
 :root {
-    --bg: #050508;
+    --bg-dark: #070213;
+    --card-bg: #12121e;
     --gold: linear-gradient(180deg, #d4af37 0%, #f9e29c 50%, #b8860b 100%);
     --gold-solid: #d4af37;
-    --card: #12121e;
-    --border: rgba(212, 175, 55, 0.25);
+    --border: rgba(212, 175, 55, 0.2);
 }
 
 body {
-    margin: 0; padding: 0; background-color: var(--bg);
-    color: white; font-family: 'Segoe UI', sans-serif;
+    margin: 0; background-color: var(--bg-dark); color: #fff;
+    font-family: -apple-system, sans-serif; overflow-x: hidden;
 }
 
-.app-background { padding: 10px; position: relative; }
-
-/* Хедер и Профиль */
 .main-title {
-    background: var(--gold); -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; text-align: center;
-    font-size: 18px; text-transform: uppercase; margin-bottom: 50px;
+    background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-align: center; font-size: 18px; text-transform: uppercase; margin-bottom: 55px;
 }
 
-.user-block-float {
-    position: absolute; top: 45px; left: 10px; right: 10px;
-}
-
+/* Профиль */
+.user-block-float { position: absolute; top: 45px; left: 10px; right: 10px; }
 .user-profile-bar {
-    background: var(--card); border: var(--border); border-radius: 20px;
-    padding: 8px 15px; display: flex; align-items: center;
+    background: var(--card-bg); border: var(--border); border-radius: 20px;
+    padding: 10px; display: flex; align-items: center;
 }
-
 .user-profile-bar img { border-radius: 50%; border: 2px solid var(--gold-solid); margin-right: 12px; }
+#user_name { color: var(--gold-solid); font-weight: bold; font-size: 14px; }
 
-.user-text-details #user_name { color: var(--gold-solid); font-weight: bold; font-size: 14px; }
-
-.points-row { font-size: 10px; color: #aaa; }
-
-/* Личное достижение */
-.achievement-section { margin-top: 50px; margin-bottom: 15px; }
-
+/* Достижения */
+.achievement-section { margin-top: 55px; margin-bottom: 20px; }
 .achievement-card {
-    background: linear-gradient(145deg, #161625, #0a0a12);
-    border: 1px solid var(--gold-solid); border-radius: 20px;
-    padding: 15px; text-align: center; box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+    background: var(--card-bg); border: 1px solid var(--gold-solid);
+    border-radius: 20px; padding: 15px; text-align: center;
 }
-
-.card-header { color: var(--gold-solid); font-size: 10px; letter-spacing: 2px; margin-bottom: 10px; }
-
-#current-title-display { font-size: 22px; font-weight: 900; color: #fff; text-shadow: 0 0 10px var(--gold-solid); }
+.card-header { color: var(--gold-solid); font-size: 10px; letter-spacing: 2px; margin-bottom: 5px; }
+#current-title-display { font-size: 24px; font-weight: 900; letter-spacing: 1px; }
 
 .progress-container-mini {
-    background: #222; height: 8px; border-radius: 4px; margin: 10px auto; width: 80%; overflow: hidden;
+    background: #222; height: 6px; border-radius: 3px; margin: 10px auto; width: 70%; overflow: hidden;
 }
-
 .progress-fill-mini { background: var(--gold); height: 100%; transition: 0.5s; }
+.percentage-text { font-size: 11px; color: #aaa; }
 
-.percentage-text { font-size: 11px; color: #ccc; }
+/* Сетка и иконки */
+.two-column-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 10px; }
+.content-panel { background: var(--card-bg); border-radius: 15px; border: var(--border); padding: 12px; }
+.panel-header { color: var(--gold-solid); font-size: 11px; text-transform: uppercase; text-align: center; margin-bottom: 12px; }
 
-.badges-row { margin-top: 10px; display: flex; justify-content: center; gap: 15px; }
-
-.badge { font-size: 20px; filter: grayscale(1); opacity: 0.3; }
-
-.badge.gold { filter: grayscale(0); opacity: 1; }
-
-/* Сетка */
-.two-column-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 10px; }
-
-.content-panel { background: var(--card); border: var(--border); border-radius: 15px; padding: 12px; }
-
-.panel-header { color: var(--gold-solid); font-size: 12px; text-transform: uppercase; text-align: center; margin-bottom: 10px; }
-
-/* Категории */
 .category-list { display: flex; flex-direction: column; gap: 8px; }
-
 .cat-item {
     background: #1a1a2a; border: 1px solid #2a2a3a; border-radius: 10px;
-    padding: 10px; color: white; display: flex; align-items: center; cursor: pointer;
+    padding: 10px; color: #fff; display: flex; align-items: center; font-size: 12px;
+}
+.gold-emoji {
+    font-size: 18px; margin-right: 10px;
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.8)); /* Золотое свечение */
 }
 
-.gold-icon { width: 24px; height: 24px; margin-right: 10px; }
+/* Лидерборд */
+.leaders-avatars { display: flex; justify-content: center; align-items: flex-end; gap: 8px; margin: 10px 0; }
+.leader img { border-radius: 50%; border: 1px solid var(--border); }
+.leader span { display: block; font-size: 8px; color: #aaa; }
+.rank-1 img { border-color: var(--gold-solid); }
 
-/* Квиз Оверлей */
-.quiz-overlay {
-    position: fixed; top:0; left:0; width: 100%; height:100%;
-    background: rgba(0,0,0,0.9); z-index: 100; display: flex; align-items: center; justify-content: center;
+.super-test-btn {
+    width: 100%; background: var(--gold-solid); color: #000; border: none;
+    border-radius: 8px; padding: 8px; font-size: 10px; font-weight: bold; margin-top: 10px;
 }
 
-.quiz-card { background: var(--card); border: 2px solid var(--gold-solid); padding: 25px; border-radius: 25px; width: 85%; text-align: center; }
-
-.timer-circle { width: 50px; height: 50px; border: 3px solid var(--gold-solid); border-radius: 50%; line-height: 50px; margin: 0 auto 15px; font-size: 20px; color: var(--gold-solid); }
-
-.option-btn {
-    background: #222; border: 1px solid var(--border); color: white;
-    width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 12px;
-}
-.option-btn.correct { background: #10b981; }
-.option-btn.wrong { background: #ef4444; }
+/* Квиз */
+.quiz-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; display: flex; align-items: center; justify-content: center; }
+.quiz-card { background: var(--card-bg); border: 2px solid var(--gold-solid); border-radius: 25px; padding: 25px; width: 80%; text-align: center; }
+.timer-circle { width: 45px; height: 45px; border: 2px solid var(--gold-solid); border-radius: 50%; line-height: 45px; margin: 0 auto 15px; color: var(--gold-solid); font-weight: bold; }
+.option-btn { width: 100%; background: #222; border: 1px solid var(--border); color: #fff; padding: 12px; margin-bottom: 10px; border-radius: 12px; }
