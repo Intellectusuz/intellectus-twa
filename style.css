@@ -1,268 +1,97 @@
 :root {
-    --bg-dark: #070213;
-    --card-bg: #12121e;
+    --bg: #050508;
     --gold: linear-gradient(180deg, #d4af37 0%, #f9e29c 50%, #b8860b 100%);
     --gold-solid: #d4af37;
-    --border-color: rgba(212, 175, 55, 0.2);
+    --card: #12121e;
+    --border: rgba(212, 175, 55, 0.25);
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-dark);
-    color: #ffffff;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    overflow-x: hidden;
+    margin: 0; padding: 0; background-color: var(--bg);
+    color: white; font-family: 'Segoe UI', sans-serif;
 }
 
-.app-background {
-    position: relative;
-    padding: 10px;
-}
+.app-background { padding: 10px; position: relative; }
 
-/* Эффект сияния сверху как на фото */
-.app-background::before {
-    content: '';
-    position: absolute;
-    top: -50px;
-    right: -10px;
-    width: 200px;
-    height: 100px;
-    background-color: rgba(212, 175, 55, 0.15);
-    border-radius: 50%;
-    filter: blur(50px);
-    z-index: 0;
-}
-
-/* Хедер */
-.app-header {
-    text-align: center;
-    border-bottom: var(--border-color);
-    margin-bottom: 60px; /* Отступ для плавающего профиля */
-}
-
+/* Хедер и Профиль */
 .main-title {
-    background: var(--gold);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 16px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    background: var(--gold); -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; text-align: center;
+    font-size: 18px; text-transform: uppercase; margin-bottom: 50px;
 }
 
-/* Плавающий блок профиля */
 .user-block-float {
-    position: absolute;
-    top: 40px;
-    left: 10px;
-    right: 10px;
-    z-index: 5;
+    position: absolute; top: 45px; left: 10px; right: 10px;
 }
 
 .user-profile-bar {
-    background-color: var(--card-bg);
-    border-radius: 20px;
-    padding: 10px;
-    border: var(--border-color);
-    display: flex;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    background: var(--card); border: var(--border); border-radius: 20px;
+    padding: 8px 15px; display: flex; align-items: center;
 }
 
-.user-profile-bar img {
-    border-radius: 50%;
-    margin-right: 10px;
-    border: 2px solid var(--gold-solid);
-}
+.user-profile-bar img { border-radius: 50%; border: 2px solid var(--gold-solid); margin-right: 12px; }
 
-.user-text-details {
-    display: flex;
-    flex-direction: column;
-}
+.user-text-details #user_name { color: var(--gold-solid); font-weight: bold; font-size: 14px; }
 
-#user_name {
-    color: var(--gold-solid);
-    font-weight: bold;
-    font-size: 14px;
-}
+.points-row { font-size: 10px; color: #aaa; }
 
-.points-row {
-    font-size: 10px;
-    color: #a0a0a0;
-}
-
-.points-row b {
-    color: #fff;
-}
-
-/* Сетка двух колонок */
-.two-column-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.content-panel {
-    background-color: var(--card-bg);
-    border-radius: 15px;
-    padding: 15px;
-    border: var(--border-color);
-}
-
-.panel-header {
-    color: var(--gold-solid);
-    font-size: 13px;
-    text-align: center;
-    margin-top: 0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding-bottom: 5px;
-}
-
-/* Категории (Левая колонка) */
-.category-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.cat-item {
-    background-color: #1a1a25;
-    border: 1px solid #2a2a35;
-    border-radius: 10px;
-    padding: 10px;
-    color: #f1f1f1;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.cat-item .icon {
-    font-size: 16px;
-    margin-right: 10px;
-}
-
-.cat-item .arrow-icon {
-    margin-left: auto;
-    color: var(--gold-solid);
-    font-size: 16px;
-    margin-right: -5px;
-}
-
-/* Супер-титул (Правая колонка) */
-.title-details h3 {
-    font-size: 11px;
-    text-align: center;
-    color: var(--gold-solid);
-    letter-spacing: 1px;
-    margin-top: 5px;
-}
-
-.leaders-avatars {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    margin-top: 15px;
-    gap: 10px;
-}
-
-.leader {
-    text-align: center;
-}
-
-.leader img {
-    border-radius: 50%;
-    border: 2px solid var(--border-color);
-}
-
-.leader span {
-    display: block;
-    font-size: 9px;
-    color: #ccc;
-    margin-top: 3px;
-}
-
-.leader.rank-1 {
-    order: 2;
-}
-
-.leader.rank-1 img {
-    border: 2px solid var(--gold-solid);
-}
-
-.leader.rank-2 {
-    order: 1;
-}
-
-.leader.rank-3 {
-    order: 3;
-}
-
-.leader-progress-block {
-    text-align: center;
-    margin-top: 15px;
-}
-
-.to-professor {
-    font-size: 12px;
-}
-
-.required-points {
-    font-size: 10px;
-    color: #ccc;
-}
-
-.super-test-btn {
-    margin-top: 10px;
-    width: 100%;
-    background-color: var(--gold-solid);
-    color: #000;
-    border: none;
-    padding: 10px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 11px;
-    text-transform: uppercase;
-}
-.quiz-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(7, 2, 19, 0.95); z-index: 100;
-    display: flex; align-items: center; justify-content: center;
-}
-.quiz-card {
-    background: var(--card-bg); border: var(--border-color);
-    width: 90%; padding: 20px; border-radius: 20px; text-align: center;
-}
-.timer-circle {
-    width: 40px; height: 40px; border: 2px solid var(--gold-solid);
-    border-radius: 50%; line-height: 40px; margin: 0 auto;
-    color: var(--gold-solid); font-weight: bold;
-}
-.options-container { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
-.option-btn {
-    background: #1a1a25; border: 1px solid #2a2a35; color: white;
-    padding: 12px; border-radius: 10px; cursor: pointer; transition: 0.2s;
-}
-.option-btn.correct { background: #10b981; border-color: #10b981; }
-.option-btn.wrong { background: #ef4444; border-color: #ef4444; }
-.gold-icon-frame {
-    width: 30px; height: 30px; margin-right: 15px;
-    display: flex; align-items: center; justify-content: center;
-}
-.gold-icon-frame img { width: 100%; filter: drop-shadow(0 0 2px #d4af37); }
+/* Личное достижение */
+.achievement-section { margin-top: 50px; margin-bottom: 15px; }
 
 .achievement-card {
-    background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
-    border: 1px solid #d4af37; border-radius: 15px;
-    padding: 15px; margin-bottom: 20px; text-align: center;
+    background: linear-gradient(145deg, #161625, #0a0a12);
+    border: 1px solid var(--gold-solid); border-radius: 20px;
+    padding: 15px; text-align: center; box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
 }
-.card-title { color: #d4af37; font-size: 10px; letter-spacing: 2px; margin-bottom: 10px; }
-.badge-item { 
-    display: inline-block; font-size: 10px; padding: 5px 10px; 
-    border-radius: 5px; margin: 0 5px; border: 1px solid #333; color: #555;
+
+.card-header { color: var(--gold-solid); font-size: 10px; letter-spacing: 2px; margin-bottom: 10px; }
+
+#current-title-display { font-size: 22px; font-weight: 900; color: #fff; text-shadow: 0 0 10px var(--gold-solid); }
+
+.progress-container-mini {
+    background: #222; height: 8px; border-radius: 4px; margin: 10px auto; width: 80%; overflow: hidden;
 }
-.badge-item.active { border-color: #d4af37; color: #d4af37; box-shadow: 0 0 10px rgba(212,175,55,0.3); }
+
+.progress-fill-mini { background: var(--gold); height: 100%; transition: 0.5s; }
+
+.percentage-text { font-size: 11px; color: #ccc; }
+
+.badges-row { margin-top: 10px; display: flex; justify-content: center; gap: 15px; }
+
+.badge { font-size: 20px; filter: grayscale(1); opacity: 0.3; }
+
+.badge.gold { filter: grayscale(0); opacity: 1; }
+
+/* Сетка */
+.two-column-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 10px; }
+
+.content-panel { background: var(--card); border: var(--border); border-radius: 15px; padding: 12px; }
+
+.panel-header { color: var(--gold-solid); font-size: 12px; text-transform: uppercase; text-align: center; margin-bottom: 10px; }
+
+/* Категории */
+.category-list { display: flex; flex-direction: column; gap: 8px; }
+
+.cat-item {
+    background: #1a1a2a; border: 1px solid #2a2a3a; border-radius: 10px;
+    padding: 10px; color: white; display: flex; align-items: center; cursor: pointer;
+}
+
+.gold-icon { width: 24px; height: 24px; margin-right: 10px; }
+
+/* Квиз Оверлей */
+.quiz-overlay {
+    position: fixed; top:0; left:0; width: 100%; height:100%;
+    background: rgba(0,0,0,0.9); z-index: 100; display: flex; align-items: center; justify-content: center;
+}
+
+.quiz-card { background: var(--card); border: 2px solid var(--gold-solid); padding: 25px; border-radius: 25px; width: 85%; text-align: center; }
+
+.timer-circle { width: 50px; height: 50px; border: 3px solid var(--gold-solid); border-radius: 50%; line-height: 50px; margin: 0 auto 15px; font-size: 20px; color: var(--gold-solid); }
+
+.option-btn {
+    background: #222; border: 1px solid var(--border); color: white;
+    width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 12px;
+}
+.option-btn.correct { background: #10b981; }
+.option-btn.wrong { background: #ef4444; }
