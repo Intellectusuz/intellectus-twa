@@ -3,27 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intellectus Uzbekistan</title>
+    <title>Intellectus Uzbekistan TWA</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div id="app">
-        <header>
-            <h1 id="user-name">Загрузка...</h1>
-            <div class="stats">IQ: <span id="user-iq">1500</span></div>
-        </header>
+    <div class="main-container">
+        <nav class="sidebar">
+            <div class="sidebar-icons">
+                <div class="icon active"></div>
+                <div class="icon"></div>
+                <div class="icon"></div>
+                <div class="icon"></div>
+            </div>
+        </nav>
 
-        <main id="quiz-container">
-            <div id="question-box">
-                <h2 id="question-text">Готовы начать Квиз №1?</h2>
-                <div id="timer">15</div>
-                <div id="options">
-                    <button class="ans-btn" onclick="startQuiz()">Начать тест</button>
+        <main class="content">
+            <header>
+                <div class="user-block">
+                    <img id="user_avatar" src="https://via.placeholder.com/30" alt="Avatar">
+                    <span id="user_name">Гость</span>
+                </div>
+            </header>
+
+            <div class="logo-area">
+                <div class="brain-logo">🧠</div>
+                <h1>Intellectus</h1>
+                <div class="flag">🇺🇿</div>
+            </div>
+
+            <div class="results-block">
+                <h2>РЕЗУЛЬТАТЫ ПРОВЕРОЧНОГО КВИЗА №1</h2>
+                <div class="answers-count">ВЕРНЫХ ОТВЕТОВ: <span>5/5</span></div>
+                
+                <div class="victory-block">
+                    <span class="confetti">✨</span>
+                    <span class="trophy">🏆</span>
+                    <span class="fire">🔥</span>
+                    <h3>ПОБЕДА!</h3>
+                    <div class="points">+250 БАЛЛОВ</div>
+                    <span class="confetti">✨</span>
+                </div>
+
+                <div class="title-block">
+                    <span class="medal">🥇</span>
+                    <h3>ТИТУЛ:</h3>
+                    <p>Самый лучший Юрист-Новичок</p>
                 </div>
             </div>
+
+            <div class="subscription-block activated">
+                <h3>ПОДПИСКА <span class="status">ACTIVATED (GRANT)</span></h3>
+                <p>✔️ ИСПОЛЬЗОВАНИЕ ПРОЕКТА</p>
+                <p>✔️ ГРАНТ ВКЛЮЧЕН</p>
+            </div>
+
+            <button class="action-btn">К ОБРАЗОВАТЕЛЬНЫМ КАРТОЧКАМ</button>
         </main>
     </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
