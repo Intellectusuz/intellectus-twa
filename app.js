@@ -1,21 +1,33 @@
 const tg = window.Telegram.WebApp;
 tg.expand();
 
-// Логика уровней
-function getLevel(points) {
-    if (points < 500) return "Новичок";
-    if (points < 1500) return "Ученик";
-    if (points < 3000) return "Магистр";
-    if (points < 5000) return "Академик";
-    return "ПРОФЕССОР";
+// Логика автоматического определения звания
+const levels = [
+    { threshold: 0, title: "Новичок" },
+    { threshold: 1000, title: "Ученик" },
+    { threshold: 2500, title: "Магистр" },
+    { threshold: 4500, title: "Академик" },
+    { threshold: 6000, title: "ПРОФЕССОР" }
+];
+
+function getCurrentLevel(points) {
+    let current = "Новичок";
+    for (let level of levels) {
+        if (points >= level.threshold) {
+            current = level.title;
+        } else {
+            break;
+        }
+    }
+    return current;
 }
 
-// Заполнение данных
 if (tg.initDataUnsafe.user) {
     const user = tg.initDataUnsafe.user;
-    document.getElementById('user_name').innerText = user.first_name;
-    // Здесь можно поставить реальные баллы из твоей базы
-    const points = 1500; 
+    // Заменяем данные на настоящие
+    const points = 1500; // Пример баллов (здесь должна быть реальная база)
+    const levelTitle = getCurrentLevel(points);
+
+    document.getElementById('user_name').innerText = `${user.first_name} (${levelTitle})`;
     document.getElementById('user_points').innerText = points.toLocaleString();
-    document.getElementById('user_level').innerText = getLevel(points);
 }
