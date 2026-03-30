@@ -14,10 +14,12 @@
 
         <div class="user-block-float">
             <div class="user-profile-bar">
-                <img id="user_avatar" src="https://github.com/Intellectusuz/intellectus-twa/raw/main/serious-profile.png" alt="Avatar">
+                <div class="avatar-wrapper">
+                    <img id="user_avatar" src="unnamed.jpg" alt="Avatar">
+                </div>
                 <div class="user-text-details">
-                    <div id="user_name">Загрузка...</div>
-                    <div class="points-row">🏆 Total IQ: <b id="user_points">0</b> pts</div>
+                    <div id="user_name">Artur</div>
+                    <div class="points-row">🏆 Total IQ: <b id="user_points">1,500</b> pts</div>
                 </div>
                 <div class="uz-flag">🇺🇿</div>
             </div>
@@ -26,11 +28,11 @@
         <div class="achievement-section">
             <div class="achievement-card">
                 <div class="card-header">ЛИЧНОЕ ДОСТИЖЕНИЕ</div>
-                <div id="current-title-display">НОВИЧОК</div>
+                <div id="current-title-display">ЮРИСТ-НОВИЧОК</div>
                 <div class="progress-container-mini">
-                    <div class="progress-fill-mini" id="total-progress-bar" style="width: 0%"></div>
+                    <div class="progress-fill-mini" id="total-progress-bar" style="width: 20%"></div>
                 </div>
-                <div class="percentage-text">Усвоение знаний: <span id="progress-percent">0%</span></div>
+                <div class="percentage-text">Усвоение знаний: <span id="progress-percent">20%</span></div>
             </div>
         </div>
 
@@ -68,21 +70,21 @@
                     <h3>ПРЕТЕНДЕНТЫ НА ЗВАНИЕ "ПРОФЕССОР"</h3>
                     <div class="leaders-avatars">
                         <div class="leader rank-2">
-                            <img src="https://github.com/Intellectusuz/intellectus-twa/raw/main/serious-profile.png" alt="L2">
+                            <img src="unnamed.jpg" alt="L2">
                             <span>Amir_T</span>
                         </div>
                         <div class="leader rank-1">
-                            <img src="https://github.com/Intellectusuz/intellectus-twa/raw/main/serious-profile.png" alt="L1">
+                            <img src="unnamed.jpg" alt="L1">
                             <span>Brain_Uz</span>
                         </div>
                         <div class="leader rank-3">
-                            <img src="https://github.com/Intellectusuz/intellectus-twa/raw/main/serious-profile.png" alt="L3">
+                            <img src="unnamed.jpg" alt="L3">
                             <span>Lola_M</span>
                         </div>
                     </div>
                     <div class="leader-progress-block">
                         <p class="required-points">85% до звания</p>
-                        <button class="super-test-btn">Супер-Тест</button>
+                        <button class="super-test-btn" onclick="tg.showAlert('Супер-тест доступен раз в месяц!')">Пройти Супер-Тест</button>
                     </div>
                 </div>
             </section>
@@ -92,7 +94,7 @@
     <div id="quiz-screen" class="quiz-overlay" style="display:none;">
         <div class="quiz-card">
             <div id="timer" class="timer-circle">10</div>
-            <h2 id="question-text">Загрузка...</h2>
+            <h2 id="question-text">Загрузка вопроса...</h2>
             <div id="answer-options" class="options-container"></div>
         </div>
     </div>
