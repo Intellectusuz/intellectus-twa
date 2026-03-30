@@ -3,58 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intellectus Uzbekistan</title>
+    <title>Intellectus: Академические Звания</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container">
-        <header class="gold-header">
+    <div class="app-background">
+        <header class="app-header">
             <h1 class="main-title">Intellectus Uzbekistan</h1>
-            <div class="user-profile">
-                <div class="avatar-frame">
-                    <img id="user_avatar" src="https://via.placeholder.com/50" alt="User">
-                </div>
-                <div class="user-data">
-                    <div id="user_name" class="gold-text">Artur</div>
-                    <div class="user-stats">
-                        <span>🏆 <b id="user_points">1,500</b> pts</span>
-                        <span class="level-tag">Уровень: <b id="user_level">Новичок</b></span>
+        </header>
+
+        <div class="user-block-float">
+            <div class="user-profile-bar">
+                <img id="user_avatar" src="https://via.placeholder.com/40" alt="Avatar">
+                <div class="user-text-details">
+                    <div id="user_name">Artur (Новичок)</div>
+                    <div class="points-row">
+                        <span>🏆 Total IQ: <b id="user_points">1,500</b> pts</span>
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
 
-        <div class="split-screen">
-            <section class="content-block category-block">
-                <h2 class="block-title">Список категорий</h2>
+        <div class="two-column-grid">
+            <section class="content-panel left-panel categories-panel">
+                <h2 class="panel-header">Список категорий</h2>
                 <div class="category-list">
-                    <button class="cat-item"><span>⚖️</span> Юридика</button>
-                    <button class="cat-item"><span>📜</span> История</button>
-                    <button class="cat-item"><span>📚</span> Литература</button>
-                    <button class="cat-item"><span>🌍</span> География</button>
-                    <button class="cat-item"><span>🚀</span> Астрономия</button>
-                    <button class="cat-item"><span>⚛️</span> Физика</button>
-                    <button class="cat-item"><span>🧪</span> Химия</button>
+                    <button class="cat-item">
+                        <span class="icon">⚖️</span>
+                        <span>Юридика</span>
+                        <span class="arrow-icon">›</span>
+                    </button>
+                    <button class="cat-item">
+                        <span class="icon">📜</span>
+                        <span>История</span>
+                        <span class="arrow-icon">›</span>
+                    </button>
+                    <button class="cat-item">
+                        <span class="icon">📚</span>
+                        <span>Литература</span>
+                        <span class="arrow-icon">›</span>
+                    </button>
+                    <button class="cat-item">
+                        <span class="icon">🌍</span>
+                        <span>География</span>
+                        <span class="arrow-icon">›</span>
+                    </button>
+                    <button class="cat-item">
+                        <span class="icon">🚀</span>
+                        <span>Астрономия</span>
+                        <span class="arrow-icon">›</span>
+                    </button>
+                    <button class="cat-item">
+                        <span class="icon">⚛️</span>
+                        <span>Физика</span>
+                        <span class="arrow-icon">›</span>
+                    </button>
+                    <button class="cat-item">
+                        <span class="icon">🧪</span>
+                        <span>Химия</span>
+                        <span class="arrow-icon">›</span>
+                    </button>
                 </div>
             </section>
 
-            <section class="content-block title-block">
-                <h2 class="block-title">Супер-титул</h2>
-                <p class="subtitle">Претенденты на "ПРОФЕССОР"</p>
-                <div class="leaderboard">
-                    <div class="leader-item">
-                        <span class="cat-name">Юридика:</span>
-                        <span class="leader-val">980 pts (98%)</span>
+            <section class="content-panel right-panel super-title-panel">
+                <h2 class="panel-header">Супер-титул</h2>
+                <div class="title-details">
+                    <h3>🏆 ПРЕТЕНДЕНТЫ НА ЗВАНИЕ "ПРОФЕССОР"</h3>
+                    <div class="leaders-avatars">
+                        <div class="leader rank-2">
+                            <img src="https://via.placeholder.com/40" alt="Leader 2">
+                            <span>Казах_Expert</span>
+                        </div>
+                        <div class="leader rank-1">
+                            <img src="https://via.placeholder.com/50" alt="Leader 1">
+                            <span>Tashkent_History</span>
+                        </div>
+                        <div class="leader rank-3">
+                            <img src="https://via.placeholder.com/40" alt="Leader 3">
+                            <span>Юрист_Nukus</span>
+                        </div>
                     </div>
-                    <div class="leader-item">
-                        <span class="cat-name">История:</span>
-                        <span class="leader-val">950 pts (95%)</span>
+                    
+                    <div class="leader-progress-block">
+                        <p class="to-professor">До звания "Профессор":</p>
+                        <p class="required-points">85% completion, 1250 pts needed</p>
+                        <button class="super-test-btn">Пройти Супер-Тест месяца</button>
                     </div>
-                    <div class="leader-item">
-                        <span class="cat-name">Астрономия:</span>
-                        <span class="leader-val">920 pts (92%)</span>
-                    </div>
-                    </div>
+                </div>
             </section>
         </div>
     </div>
