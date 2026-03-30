@@ -1,116 +1,153 @@
 :root {
-    --bg-dark: #0d0121;
-    --accent-blue: #007bff;
-    --card-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --gold: linear-gradient(45deg, #d4af37, #f9e29c, #b8860b);
+    --gold-solid: #d4af37;
+    --noir-bg: #050505;
+    --card-bg: #121212;
+    --border-gold: 1px solid rgba(212, 175, 55, 0.3);
 }
 
 body {
     margin: 0;
-    background: radial-gradient(circle at top right, #1a0b3b, #0d0121);
+    background-color: var(--noir-bg);
     color: #ffffff;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    display: flex;
-    min-height: 100vh;
+    font-family: 'Georgia', serif;
+    overflow-x: hidden;
 }
 
-/* Боковая панель с эффектом стекла */
-.sidebar {
-    width: 65px;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(10px);
-    border-right: 1px solid var(--glass-border);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 25px;
+.app-container {
+    padding: 15px;
 }
 
-.icon {
-    width: 35px;
-    height: 35px;
-    border-radius: 8px;
-    margin-bottom: 25px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--glass-border);
-    transition: 0.3s;
-}
-
-.icon.active {
-    background: var(--accent-blue);
-    box-shadow: 0 0 15px var(--accent-blue);
-}
-
-/* Основной контент */
-.content {
-    flex: 1;
-    padding: 20px;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-/* Карточка результатов (белая/серебристая как на фото) */
-.results-block {
-    background: linear-gradient(145deg, #ffffff, #d1d5db);
-    border-radius: 24px;
-    padding: 25px;
-    color: #1f2937;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+/* Золотой заголовок */
+.gold-header {
     text-align: center;
+    border-bottom: var(--border-gold);
+    padding-bottom: 20px;
     margin-bottom: 20px;
 }
 
-.results-block h2 {
-    font-size: 14px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
-}
-
-.victory-block {
-    background: #f3f4f6;
-    border-radius: 15px;
-    padding: 15px;
-    margin: 15px 0;
-    border: 1px solid #e5e7eb;
-}
-
-.victory-block h3 {
-    margin: 5px 0;
-    color: #b45309; /* Оранжевый как огонь */
+.main-title {
+    background: var(--gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0 0 15px 0;
 }
 
-/* Блок подписки */
-.subscription-block {
-    background: rgba(16, 185, 129, 0.1);
-    border: 1px solid #10b981;
-    border-radius: 18px;
-    padding: 15px;
-    text-align: left;
+/* Профиль юзера */
+.user-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
 }
 
-.subscription-block .status {
-    background: #10b981;
-    color: white;
-    padding: 2px 8px;
-    border-radius: 5px;
-    font-size: 10px;
-    margin-left: 10px;
+.avatar-frame {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    padding: 2px;
+    background: var(--gold);
 }
 
-/* Главная кнопка */
-.action-btn {
+.avatar-frame img {
     width: 100%;
-    background: linear-gradient(90deg, #007bff, #00c6ff);
-    border: none;
-    padding: 18px;
-    border-radius: 15px;
-    color: white;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--noir-bg);
+}
+
+.gold-text {
+    color: var(--gold-solid);
     font-weight: bold;
+    font-size: 18px;
+}
+
+.user-stats {
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    color: #ccc;
+}
+
+.level-tag {
+    margin-top: 4px;
+    color: #fff;
+    background: rgba(212, 175, 55, 0.2);
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--gold-solid);
+}
+
+/* Разделение экрана */
+.split-screen {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.content-block {
+    background: var(--card-bg);
+    border: var(--border-gold);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+}
+
+.block-title {
+    color: var(--gold-solid);
     font-size: 16px;
-    margin-top: 20px;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
-    cursor: pointer;
+    text-align: center;
+    margin-top: 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    padding-bottom: 10px;
+}
+
+/* Категории */
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cat-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.cat-item:active {
+    background: var(--gold);
+    color: black;
+}
+
+/* Лидерборд */
+.subtitle {
+    font-size: 10px;
+    text-align: center;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.leader-item {
+    font-size: 11px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 5px;
+}
+
+.cat-name {
+    color: var(--gold-solid);
+    display: block;
+}
+
+.leader-val {
+    color: #fff;
 }
