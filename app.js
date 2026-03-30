@@ -1,35 +1,24 @@
-let tg = window.Telegram.WebApp;
-tg.expand(); // Развернуть на весь экран
+// Инициализация Telegram Web App
+const tg = window.Telegram.WebApp;
 
-document.getElementById('user-name').innerText = tg.initDataUnsafe.user ? tg.initDataUnsafe.user.first_name : "Гость";
+// Расширяем приложение на все окно
+tg.expand();
 
-let timeLeft = 15;
-let timerId;
+// Получаем имя пользователя
+const userCard = document.getElementById('user_name');
+const userAvatar = document.getElementById('user_avatar');
 
-function startQuiz() {
-    document.getElementById('question-text').innerText = "Статья 104 ТК РУз: Форма приказа о приеме на работу?";
-    document.getElementById('options').innerHTML = `
-        <button class="ans-btn" onclick="checkAns('B')">Б) Письменная</button>
-        <button class="ans-btn" onclick="checkAns('A')">А) Устная</button>
-    `;
+if (tg.initDataUnsafe.user) {
+    const user = tg.initDataUnsafe.user;
     
-    timerId = setInterval(() => {
-        timeLeft--;
-        document.getElementById('timer').innerText = timeLeft;
-        if(timeLeft <= 0) {
-            clearInterval(timerId);
-            alert("Время вышло! Вы проиграли.");
-            tg.close();
-        }
-    }, 1000);
-}
-
-function checkAns(ans) {
-    clearInterval(timerId);
-    if(ans === 'B') {
-        alert("Правильно! +50 IQ. Вы на пути к титулу!");
-    } else {
-        alert("Ошибка! Изучите Статью 104.");
+    // Подставляем имя и фамилию
+    userCard.innerText = `${user.first_name} ${user.last_name || ''}`;
+    
+    // Если есть аватарка, подставляем и её (если она доступна по URL)
+    if (user.photo_url) {
+        userAvatar.src = user.photo_url;
     }
-    tg.close();
+} else {
+    // Если открыто не в Telegram
+    userCard.innerText = "Artur (Гость)";
 }
