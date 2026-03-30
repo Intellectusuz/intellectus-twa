@@ -1,0 +1,51 @@
+body {
+    background: #0f0c29; /* Глубокий космос */
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#app {
+    width: 90%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #4facfe;
+    padding-bottom: 10px;
+}
+
+#timer {
+    font-size: 24px;
+    color: #00ff88; /* Неоновый зеленый */
+    text-align: center;
+    margin: 10px 0;
+}
+
+.ans-btn {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    background: #4facfe;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.ans-btn:hover {
+    background: #00f2fe;
+}

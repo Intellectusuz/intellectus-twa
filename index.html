@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intellectus Uzbekistan</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1 id="user-name">Загрузка...</h1>
+            <div class="stats">IQ: <span id="user-iq">1500</span></div>
+        </header>
+
+        <main id="quiz-container">
+            <div id="question-box">
+                <h2 id="question-text">Готовы начать Квиз №1?</h2>
+                <div id="timer">15</div>
+                <div id="options">
+                    <button class="ans-btn" onclick="startQuiz()">Начать тест</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
