@@ -249,3 +249,20 @@ body {
 }
 .option-btn.correct { background: #10b981; border-color: #10b981; }
 .option-btn.wrong { background: #ef4444; border-color: #ef4444; }
+.gold-icon-frame {
+    width: 30px; height: 30px; margin-right: 15px;
+    display: flex; align-items: center; justify-content: center;
+}
+.gold-icon-frame img { width: 100%; filter: drop-shadow(0 0 2px #d4af37); }
+
+.achievement-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+    border: 1px solid #d4af37; border-radius: 15px;
+    padding: 15px; margin-bottom: 20px; text-align: center;
+}
+.card-title { color: #d4af37; font-size: 10px; letter-spacing: 2px; margin-bottom: 10px; }
+.badge-item { 
+    display: inline-block; font-size: 10px; padding: 5px 10px; 
+    border-radius: 5px; margin: 0 5px; border: 1px solid #333; color: #555;
+}
+.badge-item.active { border-color: #d4af37; color: #d4af37; box-shadow: 0 0 10px rgba(212,175,55,0.3); }
