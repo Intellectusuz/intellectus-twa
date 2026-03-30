@@ -1,73 +1,80 @@
 :root {
-    --bg-dark: #070213;
-    --card-bg: #12121e;
-    --gold: linear-gradient(180deg, #d4af37 0%, #f9e29c 50%, #b8860b 100%);
-    --gold-solid: #d4af37;
-    --border: rgba(212, 175, 55, 0.2);
+    --bg: #050508;
+    --card: rgba(18, 18, 30, 0.95);
+    --gold: #d4af37;
+    --gold-grad: linear-gradient(180deg, #f9e29c, #d4af37);
+    --border: rgba(212, 175, 55, 0.3);
 }
 
 body {
-    margin: 0; background-color: var(--bg-dark); color: #fff;
-    font-family: -apple-system, sans-serif; overflow-x: hidden;
+    margin: 0; background: var(--bg); color: #fff;
+    font-family: -apple-system, system-ui, sans-serif;
+    -webkit-user-select: none;
 }
 
-.main-title {
-    background: var(--gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    text-align: center; font-size: 18px; text-transform: uppercase; margin-bottom: 55px;
+.app-container { padding: 15px; padding-top: 60px; }
+
+/* Тексты */
+.gold-text-gradient {
+    background: var(--gold-grad); -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; font-weight: 800; text-align: center;
+}
+.gold-text { color: var(--gold); }
+
+/* Карточки */
+.glass-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 12px; margin-bottom: 15px;
 }
 
 /* Профиль */
-.user-block-float { position: absolute; top: 45px; left: 10px; right: 10px; }
-.user-profile-bar {
-    background: var(--card-bg); border: var(--border); border-radius: 20px;
-    padding: 10px; display: flex; align-items: center;
+.profile-section { position: absolute; top: 15px; left: 15px; right: 15px; }
+.profile-bar { display: flex; align-items: center; padding: 8px 15px; }
+.avatar-container img {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 2px solid var(--gold); object-fit: cover;
 }
-.user-profile-bar img { border-radius: 50%; border: 2px solid var(--gold-solid); margin-right: 12px; }
-#user_name { color: var(--gold-solid); font-weight: bold; font-size: 14px; }
+.user-info { margin-left: 12px; flex-grow: 1; }
+.user-info div { font-size: 14px; font-weight: bold; }
+.user-stats { font-size: 10px; color: #aaa; margin-top: 2px; }
 
 /* Достижения */
-.achievement-section { margin-top: 55px; margin-bottom: 20px; }
-.achievement-card {
-    background: var(--card-bg); border: 1px solid var(--gold-solid);
-    border-radius: 20px; padding: 15px; text-align: center;
-}
-.card-header { color: var(--gold-solid); font-size: 10px; letter-spacing: 2px; margin-bottom: 5px; }
-#current-title-display { font-size: 24px; font-weight: 900; letter-spacing: 1px; }
+.achievement-card { text-align: center; }
+.label { font-size: 9px; letter-spacing: 2px; color: var(--gold); margin-bottom: 5px; }
+.rank-name { font-size: 22px; font-weight: 900; text-transform: uppercase; }
+.progress-track { background: #1a1a1a; height: 6px; border-radius: 10px; margin: 12px auto; width: 80%; overflow: hidden; }
+.progress-fill { background: var(--gold-grad); height: 100%; transition: width 0.5s ease; }
+.progress-details { font-size: 10px; color: #888; }
 
-.progress-container-mini {
-    background: #222; height: 6px; border-radius: 3px; margin: 10px auto; width: 70%; overflow: hidden;
-}
-.progress-fill-mini { background: var(--gold); height: 100%; transition: 0.5s; }
-.percentage-text { font-size: 11px; color: #aaa; }
+/* Сетка */
+.main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.column-title { font-size: 10px; color: var(--gold); letter-spacing: 1px; margin-bottom: 10px; text-align: center; }
 
-/* Сетка и иконки */
-.two-column-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 10px; }
-.content-panel { background: var(--card-bg); border-radius: 15px; border: var(--border); padding: 12px; }
-.panel-header { color: var(--gold-solid); font-size: 11px; text-transform: uppercase; text-align: center; margin-bottom: 12px; }
-
+/* Категории */
 .category-list { display: flex; flex-direction: column; gap: 8px; }
-.cat-item {
-    background: #1a1a2a; border: 1px solid #2a2a3a; border-radius: 10px;
-    padding: 10px; color: #fff; display: flex; align-items: center; font-size: 12px;
+.cat-btn {
+    background: #111; border: 1px solid #222; color: #fff;
+    padding: 10px; border-radius: 8px; text-align: left; font-size: 12px;
 }
-.gold-emoji {
-    font-size: 18px; margin-right: 10px;
-    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.8)); /* Золотое свечение */
+.cat-btn i { font-style: normal; margin-right: 8px; filter: drop-shadow(0 0 3px var(--gold)); }
+
+/* Подиум лидеров */
+.podium { display: flex; justify-content: center; align-items: flex-end; gap: 5px; margin: 15px 0; }
+.podium-item { text-align: center; }
+.podium-item img { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--border); }
+.p1 img { width: 45px; height: 45px; border-color: var(--gold); }
+.podium-item span { display: block; font-size: 8px; color: #666; margin-top: 4px; }
+.status-info { font-size: 9px; color: #888; text-align: center; margin-bottom: 10px; }
+
+/* Кнопки */
+.gold-action-btn {
+    width: 100%; background: var(--gold); color: #000; border: none;
+    padding: 8px; border-radius: 6px; font-weight: bold; font-size: 10px;
 }
 
-/* Лидерборд */
-.leaders-avatars { display: flex; justify-content: center; align-items: flex-end; gap: 8px; margin: 10px 0; }
-.leader img { border-radius: 50%; border: 1px solid var(--border); }
-.leader span { display: block; font-size: 8px; color: #aaa; }
-.rank-1 img { border-color: var(--gold-solid); }
-
-.super-test-btn {
-    width: 100%; background: var(--gold-solid); color: #000; border: none;
-    border-radius: 8px; padding: 8px; font-size: 10px; font-weight: bold; margin-top: 10px;
-}
-
-/* Квиз */
-.quiz-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; display: flex; align-items: center; justify-content: center; }
-.quiz-card { background: var(--card-bg); border: 2px solid var(--gold-solid); border-radius: 25px; padding: 25px; width: 80%; text-align: center; }
-.timer-circle { width: 45px; height: 45px; border: 2px solid var(--gold-solid); border-radius: 50%; line-height: 45px; margin: 0 auto 15px; color: var(--gold-solid); font-weight: bold; }
-.option-btn { width: 100%; background: #222; border: 1px solid var(--border); color: #fff; padding: 12px; margin-bottom: 10px; border-radius: 12px; }
+/* Модальное окно квиза */
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; z-index: 1000; }
+.modal-content { background: var(--card); border: 2px solid var(--gold); padding: 25px; border-radius: 20px; width: 80%; text-align: center; }
+.timer { width: 40px; height: 40px; border: 2px solid var(--gold); border-radius: 50%; line-height: 40px; margin: 0 auto 15px; color: var(--gold); font-weight: bold; }
+.options-stack { display: flex; flex-direction: column; gap: 10px; }
+.opt-btn { background: #1a1a25; border: 1px solid var(--border); color: #fff; padding: 12px; border-radius: 10px; }
