@@ -1,3 +1,6 @@
+const sndCorrect = new Audio('https://www.soundjay.com/buttons/sounds/button-37.mp3');
+const sndWrong = new Audio('https://www.soundjay.com/buttons/sounds/button-10.mp3');
+const sndClick = new Audio('https://www.soundjay.com/buttons/sounds/button-16.mp3');
 const tg = window.Telegram.WebApp;
 tg.expand();
 
