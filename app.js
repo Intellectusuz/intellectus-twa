@@ -1,33 +1,77 @@
 const tg = window.Telegram.WebApp;
 tg.expand();
 
-// Логика автоматического определения звания
-const levels = [
-    { threshold: 0, title: "Новичок" },
-    { threshold: 1000, title: "Ученик" },
-    { threshold: 2500, title: "Магистр" },
-    { threshold: 4500, title: "Академик" },
-    { threshold: 6000, title: "ПРОФЕССОР" }
+const questions = [
+    { q: "Мин. количество граждан для законодат. инициативы в РУз?", a: ["50 тысяч", "100 тысяч", "200 тысяч"], c: 1 },
+    { q: "Макс. срок испытания при приеме на работу?", a: ["1 месяц", "2 месяца", "3 месяца"], c: 2 },
+    { q: "С какого возраста наступает общая уголовная ответственность?", a: ["С 14 лет", "С 16 лет", "С 18 лет"], c: 1 }
 ];
 
-function getCurrentLevel(points) {
-    let current = "Новичок";
-    for (let level of levels) {
-        if (points >= level.threshold) {
-            current = level.title;
-        } else {
-            break;
-        }
+let currentQ = 0;
+let score = 0;
+let timeLeft = 10;
+let timerInterval;
+
+// Запуск теста при нажатии на "Юридика"
+document.querySelector('.cat-item').onclick = () => {
+    document.getElementById('quiz-screen').style.display = 'flex';
+    showQuestion();
+};
+
+function showQuestion() {
+    if (currentQ >= questions.length) {
+        alert(`Тест окончен! Твой счет: ${score * 250} баллов`);
+        location.reload();
+        return;
     }
-    return current;
+
+    const q = questions[currentQ];
+    document.getElementById('question-text').innerText = q.q;
+    document.getElementById('question-number').innerText = `Вопрос ${currentQ + 1}/${questions.length}`;
+    
+    const container = document.getElementById('answer-options');
+    container.innerHTML = '';
+    
+    q.a.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerText = opt;
+        btn.onclick = () => checkAnswer(i);
+        container.appendChild(btn);
+    });
+
+    startTimer();
 }
 
-if (tg.initDataUnsafe.user) {
-    const user = tg.initDataUnsafe.user;
-    // Заменяем данные на настоящие
-    const points = 1500; // Пример баллов (здесь должна быть реальная база)
-    const levelTitle = getCurrentLevel(points);
+function startTimer() {
+    timeLeft = 10;
+    document.getElementById('timer').innerText = timeLeft;
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        document.getElementById('timer').innerText = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            checkAnswer(-1); // Время вышло
+        }
+    }, 1000);
+}
 
-    document.getElementById('user_name').innerText = `${user.first_name} (${levelTitle})`;
-    document.getElementById('user_points').innerText = points.toLocaleString();
+function checkAnswer(idx) {
+    clearInterval(timerInterval);
+    const correct = questions[currentQ].c;
+    const buttons = document.querySelectorAll('.option-btn');
+
+    if (idx === correct) {
+        score++;
+        if (buttons[idx]) buttons[idx].classList.add('correct');
+    } else {
+        if (buttons[idx]) buttons[idx].classList.add('wrong');
+        buttons[correct].classList.add('correct');
+    }
+
+    setTimeout(() => {
+        currentQ++;
+        showQuestion();
+    }, 1500);
 }
