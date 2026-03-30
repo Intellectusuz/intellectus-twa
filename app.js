@@ -1,24 +1,21 @@
-// Инициализация Telegram Web App
 const tg = window.Telegram.WebApp;
-
-// Расширяем приложение на все окно
 tg.expand();
 
-// Получаем имя пользователя
-const userCard = document.getElementById('user_name');
-const userAvatar = document.getElementById('user_avatar');
+// Логика уровней
+function getLevel(points) {
+    if (points < 500) return "Новичок";
+    if (points < 1500) return "Ученик";
+    if (points < 3000) return "Магистр";
+    if (points < 5000) return "Академик";
+    return "ПРОФЕССОР";
+}
 
+// Заполнение данных
 if (tg.initDataUnsafe.user) {
     const user = tg.initDataUnsafe.user;
-    
-    // Подставляем имя и фамилию
-    userCard.innerText = `${user.first_name} ${user.last_name || ''}`;
-    
-    // Если есть аватарка, подставляем и её (если она доступна по URL)
-    if (user.photo_url) {
-        userAvatar.src = user.photo_url;
-    }
-} else {
-    // Если открыто не в Telegram
-    userCard.innerText = "Artur (Гость)";
+    document.getElementById('user_name').innerText = user.first_name;
+    // Здесь можно поставить реальные баллы из твоей базы
+    const points = 1500; 
+    document.getElementById('user_points').innerText = points.toLocaleString();
+    document.getElementById('user_level').innerText = getLevel(points);
 }
