@@ -228,3 +228,24 @@ body {
     font-size: 11px;
     text-transform: uppercase;
 }
+.quiz-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(7, 2, 19, 0.95); z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+}
+.quiz-card {
+    background: var(--card-bg); border: var(--border-color);
+    width: 90%; padding: 20px; border-radius: 20px; text-align: center;
+}
+.timer-circle {
+    width: 40px; height: 40px; border: 2px solid var(--gold-solid);
+    border-radius: 50%; line-height: 40px; margin: 0 auto;
+    color: var(--gold-solid); font-weight: bold;
+}
+.options-container { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.option-btn {
+    background: #1a1a25; border: 1px solid #2a2a35; color: white;
+    padding: 12px; border-radius: 10px; cursor: pointer; transition: 0.2s;
+}
+.option-btn.correct { background: #10b981; border-color: #10b981; }
+.option-btn.wrong { background: #ef4444; border-color: #ef4444; }
