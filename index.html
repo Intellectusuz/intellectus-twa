@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intellectus: Академические Звания</title>
+    <title>Intellectus Uzbekistan</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,78 +16,89 @@
             <div class="user-profile-bar">
                 <img id="user_avatar" src="https://via.placeholder.com/40" alt="Avatar">
                 <div class="user-text-details">
-                    <div id="user_name">Ajiniyaz (Professor)</div>
-                    <div class="points-row">
-                        <span>🏆 Total IQ: <b id="user_points">1,5000</b> pts</span>
+                    <div id="user_name">Загрузка...</div>
+                    <div class="points-row">🏆 Total IQ: <b id="user_points">0</b> pts</div>
+                </div>
+                <div class="uz-flag">🇺🇿</div>
+            </div>
+        </div>
+
+        <div class="achievement-section">
+            <div class="achievement-card">
+                <div class="card-header">ВАШ ТЕКУЩИЙ СТАТУС</div>
+                <div class="main-status">
+                    <span id="current-title-display">НОВИЧОК</span>
+                    <div class="progress-container-mini">
+                        <div class="progress-fill-mini" id="total-progress-bar" style="width: 0%"></div>
                     </div>
+                    <div class="percentage-text">Усвоение знаний: <span id="progress-percent">0%</span></div>
+                </div>
+                <div class="badges-row">
+                    <div class="badge gold" title="Профессор">🎓</div>
+                    <div class="badge" title="Магистр">📜</div>
+                    <div class="badge" title="Ученик">📖</div>
                 </div>
             </div>
         </div>
-        
-<div id="quiz-screen" class="quiz-overlay" style="display:none;">
-    <div class="quiz-card">
-        <div class="quiz-header">
-            <span id="question-number">Вопрос 1/10</span>
-            <div id="timer" class="timer-circle">10</div>
-        </div>
-        <h2 id="question-text">Загрузка вопроса...</h2>
-        <div id="answer-options" class="options-container">
-            </div>
-    </div>
-</div>
+
         <div class="two-column-grid">
-            <section class="content-panel left-panel categories-panel">
+            <section class="content-panel left-panel">
                 <h2 class="panel-header">Список категорий</h2>
-<div class="category-list">
-    <button class="cat-item" onclick="startQuiz('law')">
-        <div class="gold-icon-frame"><img src="https://img.icons8.com/ios-filled/50/d4af37/law.png"></div>
-        <span>Юридика</span>
-    </button>
-    <button class="cat-item" onclick="startQuiz('history')">
-        <div class="gold-icon-frame"><img src="https://img.icons8.com/ios-filled/50/d4af37/parchment.png"></div>
-        <span>История</span>
-    </button>
-    <button class="cat-item" onclick="startQuiz('lit')">
-        <div class="gold-icon-frame"><img src="https://img.icons8.com/ios-filled/50/d4af37/book.png"></div>
-        <span>Литература</span>
-    </button>
-    </div>
-<div class="achievement-card">
-    <div class="card-title">ЛИЧНОЕ ДОСТИЖЕНИЕ</div>
-    <div class="badges-row">
-        <div class="badge-item locked">🎓 Профессор</div>
-        <div class="badge-item locked">💎 VIP</div>
-        <div class="badge-item active">🔥 Новичок</div>
-    </div>
-</div>
+                <div class="category-list">
+                    <button class="cat-item" onclick="startQuiz('law')">
+                        <img src="https://img.icons8.com/gold/50/law.png" class="gold-icon">
+                        <span>Юридика</span>
+                    </button>
+                    <button class="cat-item" onclick="startQuiz('history')">
+                        <img src="https://img.icons8.com/gold/50/museum.png" class="gold-icon">
+                        <span>История</span>
+                    </button>
+                    <button class="cat-item" onclick="startQuiz('lit')">
+                        <img src="https://img.icons8.com/gold/50/open-book.png" class="gold-icon">
+                        <span>Литература</span>
+                    </button>
+                    <button class="cat-item" onclick="startQuiz('geo')">
+                        <img src="https://img.icons8.com/gold/50/globe.png" class="gold-icon">
+                        <span>География</span>
+                    </button>
+                    <button class="cat-item" onclick="startQuiz('astro')">
+                        <img src="https://img.icons8.com/gold/50/telescope.png" class="gold-icon">
+                        <span>Астрономия</span>
+                    </button>
+                    <button class="cat-item" onclick="startQuiz('phys')">
+                        <img src="https://img.icons8.com/gold/50/atom.png" class="gold-icon">
+                        <span>Физика</span>
+                    </button>
+                    <button class="cat-item" onclick="startQuiz('chem')">
+                        <img src="https://img.icons8.com/gold/50/test-tube.png" class="gold-icon">
+                        <span>Химия</span>
+                    </button>
+                </div>
             </section>
 
-            <section class="content-panel right-panel super-title-panel">
+            <section class="content-panel right-panel">
                 <h2 class="panel-header">Супер-титул</h2>
-                <div class="title-details">
-                    <h3>🏆 ПРЕТЕНДЕНТЫ НА ЗВАНИЕ "ПРОФЕССОР"</h3>
+                <div class="leaderboard-mini">
+                    <p class="subtitle">ПРЕТЕНДЕНТЫ НА "ПРОФЕССОР"</p>
                     <div class="leaders-avatars">
-                        <div class="leader rank-2">
-                            <img src="https://via.placeholder.com/40" alt="Leader 2">
-                            <span>Ajiniyaz</span>
-                        </div>
-                        <div class="leader rank-1">
-                            <img src="https://via.placeholder.com/50" alt="Leader 1">
-                            <span>Baxtiyar</span>
-                        </div>
-                        <div class="leader rank-3">
-                            <img src="https://via.placeholder.com/40" alt="Leader 3">
-                            <span>Юрист_Nukus</span>
-                        </div>
+                        <div class="leader r2"><img src="https://via.placeholder.com/30"><span>Amir_T</span></div>
+                        <div class="leader r1"><img src="https://via.placeholder.com/45"><span>Brain_Uz</span></div>
+                        <div class="leader r3"><img src="https://via.placeholder.com/30"><span>Lola_M</span></div>
                     </div>
-                    
-                    <div class="leader-progress-block">
-                        <p class="to-professor">До звания "Профессор":</p>
-                        <p class="required-points">85% completion, 1250 pts needed</p>
-                        <button class="super-test-btn">Пройти Супер-Тест месяца</button>
-                    </div>
+                    <button class="gold-btn-small">Супер-Тест</button>
                 </div>
             </section>
+        </div>
+    </div>
+
+    <div id="quiz-screen" class="quiz-overlay" style="display:none;">
+        <div class="quiz-card">
+            <div class="quiz-header">
+                <span id="question-number">1/10</span>
+                <div id="timer" class="timer-circle">10</div>
+            </div>
+            <h2 id="question-text">Загрузка...</h2>
+            <div id="answer-options" class="options-container"></div>
         </div>
     </div>
 
