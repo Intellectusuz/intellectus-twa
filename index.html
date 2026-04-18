@@ -2,84 +2,89 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intelectus Uzbekistan</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* БАРЧА ДИЗАЙН ШУ ЕРДА */
+        body { background: radial-gradient(circle, #2c2c2c 0%, #000 100%); color: white; font-family: sans-serif; text-align: center; margin: 0; }
+        .logo { background: linear-gradient(135deg, #bf953f, #fcf6ba, #aa771c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 30px; font-weight: 900; margin: 20px 0; }
+        .gold-border { border: 2px solid gold; padding: 15px; border-radius: 10px; margin: 10px; background: rgba(0,0,0,0.5); }
+        .cat-card { background: rgba(255,255,255,0.1); border: 1px solid gold; padding: 15px; margin: 10px; border-radius: 8px; cursor: pointer; display: inline-block; width: 200px; }
+        .cat-card:hover { background: gold; color: black; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        .modal-content { background: #1a1a1a; border: 2px solid gold; padding: 30px; border-radius: 15px; width: 80%; }
+    </style>
 </head>
 <body>
-    <div class="app-container">
-        <header class="main-header">
-            <h1 class="logo-3d">INTELECTUS UZBEKISTAN</h1>
-            <p class="author">created by “A.K.Djuginisov”</p>
-            
-            <div class="user-card">
-                <div class="user-meta">
-                    <h2 id="user-display-name">Foydalanuvchi</h2>
-                    <div class="score-display">
-                        <span class="cup-icon">🏆</span>
-                        <span id="current-points">0</span> ball
-                    </div>
-                </div>
-                <div class="avatar-wrapper">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Avatar" class="user-avatar">
-                </div>
-            </div>
 
-            <div class="rank-container gold-border">
-                <p>Hozirgi holat: <strong id="rank-title">Novichok</strong></p>
-                <div class="progress-bar">
-                    <div id="rank-progress" style="width: 0%;"></div>
-                </div>
-                <small>Keyingi unvonga: <span id="progress-percent">0</span>%</small>
-            </div>
-        </header>
+    <h1 class="logo">INTELECTUS UZBEKISTAN</h1>
+    <p style="color: gold;">created by “A.K.Djuginisov”</p>
 
-        <div class="split-layout">
-            <aside class="left-panel">
-                <section class="rating-section">
-                    <h3>Top 10 Reyting</h3>
-                    <ul id="leaderboard">
-                        <li class="gold-gradient">1. Artur - Bakalavr (1500)</li>
-                        <li class="silver-gradient">2. Malika - Student (1200)</li>
-                        <li class="bronze-gradient">3. Sardor - Uchenik (900)</li>
-                    </ul>
-                </section>
+    <div class="gold-border">
+        <h2>Hozirgi ball: <span id="score">0</span></h2>
+        <p>Daraja: <span id="rank">Novichok</span></p>
+    </div>
 
-                <section class="super-quiz-section">
-                    <button class="super-quiz-btn" onclick="alert('Tez kunda!')">СУПЕР САВОЛ-ЖАВОБ</button>
-                    <div class="super-winners">
-                        <div class="winner-slot gold-gradient">1</div>
-                        <div class="winner-slot silver-gradient">2</div>
-                        <div class="winner-slot bronze-gradient">3</div>
-                    </div>
-                </section>
-            </aside>
-
-            <section class="right-panel">
-                <h3>Yo'nalishlar</h3>
-                <div class="categories-grid">
-                    <div class="cat-card" onclick="selectCategory('Huquqshunoslik')">⚖️ Huquqshunoslik</div>
-                    <div class="cat-card" onclick="selectCategory('Tarix')">📜 Tarix</div>
-                    <div class="cat-card" onclick="selectCategory('Geografiya')">🌍 Geografiya</div>
-                    <div class="cat-card" onclick="selectCategory('Adabiyot')">📚 Adabiyot</div>
-                    <div class="cat-card" onclick="selectCategory('Fizika')">⚛️ Fizika</div>
-                    <div class="cat-card" onclick="selectCategory('Kimyo')">🧪 Kimyo</div>
-                    <div class="cat-card" onclick="selectCategory('Astronomiya')">🌠 Astronomiya</div>
-                </div>
-            </section>
-        </div>
+    <h3>Yo'nalishni tanlang:</h3>
+    <div id="categories">
+        <div class="cat-card" onclick="startTest('Tarix')">📜 Tarix</div>
+        <div class="cat-card" onclick="startTest('Huquq')">⚖️ Huquq</div>
+        <div class="cat-card" onclick="startTest('Geografiya')">🌍 Geografiya</div>
     </div>
 
     <div id="quiz-modal" class="modal">
         <div class="modal-content">
-            <div id="timer">10</div>
-            <h4 id="question-text">Savol yuklanmoqda...</h4>
-            <div class="options-grid" id="options-container"></div>
+            <h2 id="timer" style="color: gold;">10</h2>
+            <h3 id="question-text">Savol...</h3>
+            <div id="options"></div>
         </div>
     </div>
 
-    <script src="questions.js"></script>
-    <script src="app.js"></script>
-    
+    <script>
+        // БАРЧА САВОЛЛАР ВА ЛОГИКА ШУ ЕРДА
+        const questions = {
+            "Tarix": [
+                { q: "Amir Temur qachon tug'ilgan?", a: ["1336", "1405", "1300"], c: 0 },
+                { q: "O'zbekiston mustaqilligi qachon?", a: ["1990", "1991", "1992"], c: 1 }
+            ],
+            "Huquq": [
+                { q: "Konstitutsiya kuni qachon?", a: ["8-dekabr", "1-sentyabr", "21-mart"], c: 0 }
+            ],
+            "Geografiya": [
+                { q: "Eng uzun daryo?", a: ["Sirdaryo", "Amudaryo", "Zarafshon"], c: 1 }
+            ]
+        };
+
+        let currentScore = 0;
+        let timeLeft = 10;
+        let timer;
+
+        function startTest(cat) {
+            const qList = questions[cat];
+            if(!qList) return;
+            document.getElementById('quiz-modal').style.display = 'flex';
+            showQuestion(qList[0]);
+        }
+
+        function showQuestion(q) {
+            document.getElementById('question-text').innerText = q.q;
+            const optDiv = document.getElementById('options');
+            optDiv.innerHTML = "";
+            q.a.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.innerText = opt;
+                btn.style.padding = "10px"; btn.style.margin = "5px";
+                btn.onclick = () => {
+                    if(i === q.c) { currentScore += 10; alert("To'g'ri!"); }
+                    closeTest();
+                };
+                optDiv.appendChild(btn);
+            });
+        }
+
+        function closeTest() {
+            document.getElementById('quiz-modal').style.display = 'none';
+            document.getElementById('score').innerText = currentScore;
+        }
+    </script>
 </body>
 </html>
