@@ -2,88 +2,163 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intelectus Uzbekistan</title>
     <style>
-        /* БАРЧА ДИЗАЙН ШУ ЕРДА */
-        body { background: radial-gradient(circle, #2c2c2c 0%, #000 100%); color: white; font-family: sans-serif; text-align: center; margin: 0; }
-        .logo { background: linear-gradient(135deg, #bf953f, #fcf6ba, #aa771c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 30px; font-weight: 900; margin: 20px 0; }
-        .gold-border { border: 2px solid gold; padding: 15px; border-radius: 10px; margin: 10px; background: rgba(0,0,0,0.5); }
-        .cat-card { background: rgba(255,255,255,0.1); border: 1px solid gold; padding: 15px; margin: 10px; border-radius: 8px; cursor: pointer; display: inline-block; width: 200px; }
-        .cat-card:hover { background: gold; color: black; }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
-        .modal-content { background: #1a1a1a; border: 2px solid gold; padding: 30px; border-radius: 15px; width: 80%; }
+        /* Дизайн: Нуар ва Олтин */
+        body { 
+            background: radial-gradient(circle, #2c2c2c 0%, #000 100%); 
+            color: white; font-family: 'Arial', sans-serif; 
+            margin: 0; display: flex; flex-direction: column; align-items: center; 
+        }
+        .logo { 
+            background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            font-size: 32px; font-weight: 900; margin: 25px 0 5px 0; 
+        }
+        .author { color: #d4af37; font-size: 13px; margin-bottom: 25px; letter-spacing: 1px; }
+        
+        .stats-card { 
+            border: 2px solid #d4af37; padding: 15px 50px; border-radius: 15px; 
+            background: rgba(0,0,0,0.7); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            margin-bottom: 30px; text-align: center;
+        }
+
+        .grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
+            gap: 20px; width: 90%; max-width: 900px; 
+        }
+
+        .card { 
+            background: rgba(255,255,255,0.05); border: 1px solid #d4af37; 
+            padding: 25px; border-radius: 15px; cursor: pointer; 
+            transition: 0.3s; font-weight: bold; text-transform: uppercase;
+        }
+        .card:hover { background: #d4af37; color: black; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(212,175,55,0.4); }
+
+        /* Тест ойнаси (Modal) */
+        .modal { 
+            display: none; position: fixed; 
+            top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.98); justify-content: center; align-items: center; 
+            z-index: 1000;
+        }
+        .modal-content { 
+            background: #151515; border: 2px solid #d4af37; 
+            padding: 40px; border-radius: 25px; width: 90%; max-width: 550px; 
+            text-align: center; box-shadow: 0 0 30px rgba(212,175,55,0.2);
+        }
+        .timer { font-size: 35px; color: #d4af37; font-weight: bold; margin-bottom: 20px; }
+        .question-box { font-size: 20px; margin-bottom: 25px; line-height: 1.4; color: #fcf6ba; }
+        .option-btn { 
+            display: block; width: 100%; padding: 15px; margin: 10px 0; 
+            background: transparent; color: white; border: 1px solid rgba(212,175,55,0.5); 
+            border-radius: 10px; cursor: pointer; font-size: 16px; transition: 0.2s;
+        }
+        .option-btn:hover { background: var(--gold-main, #d4af37); color: black; border-color: #d4af37; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <h1 class="logo">INTELECTUS UZBEKISTAN</h1>
-    <p style="color: gold;">created by “A.K.Djuginisov”</p>
+    <div class="author">created by “A.K.Djuginisov”</div>
 
-    <div class="gold-border">
-        <h2>Hozirgi ball: <span id="score">0</span></h2>
-        <p>Daraja: <span id="rank">Novichok</span></p>
+    <div class="stats-card">
+        <div style="font-size: 18px;">To'plangan ball: <span id="score-val" style="color:#fcf6ba; font-weight:bold;">0</span></div>
+        <div style="margin-top: 5px;">Unvon: <span id="rank-val" style="color:#d4af37;">Novichok</span></div>
     </div>
 
-    <h3>Yo'nalishni tanlang:</h3>
-    <div id="categories">
-        <div class="cat-card" onclick="startTest('Tarix')">📜 Tarix</div>
-        <div class="cat-card" onclick="startTest('Huquq')">⚖️ Huquq</div>
-        <div class="cat-card" onclick="startTest('Geografiya')">🌍 Geografiya</div>
+    <div class="grid">
+        <div class="card" onclick="openQuiz('Tarix')">📜 Tarix</div>
+        <div class="card" onclick="openQuiz('Huquq')">⚖️ Huquq</div>
+        <div class="card" onclick="openQuiz('Geografiya')">🌍 Geografiya</div>
+        <div class="card" onclick="openQuiz('Adabiyot')">📚 Adabiyot</div>
     </div>
 
     <div id="quiz-modal" class="modal">
         <div class="modal-content">
-            <h2 id="timer" style="color: gold;">10</h2>
-            <h3 id="question-text">Savol...</h3>
-            <div id="options"></div>
+            <div id="timer-display" class="timer">10</div>
+            <div id="question-text" class="question-box">Савол юкланмоқда...</div>
+            <div id="options-box"></div>
         </div>
     </div>
 
     <script>
-        // БАРЧА САВОЛЛАР ВА ЛОГИКА ШУ ЕРДА
-        const questions = {
+        // САВОЛЛАР БАЗАСИ (ОБЪЕКТ НОМЛАРИ ТЎҒРИЛАНДИ)
+        const quizData = {
             "Tarix": [
-                { q: "Amir Temur qachon tug'ilgan?", a: ["1336", "1405", "1300"], c: 0 },
-                { q: "O'zbekiston mustaqilligi qachon?", a: ["1990", "1991", "1992"], c: 1 }
+                { question: "Amir Temur qachon tug'ilgan?", options: ["1336-yil", "1342-yil", "1405-yil"], correct: 0 },
+                { question: "O'zbekiston mustaqilligi qachon e'lon qilingan?", options: ["1990-yil", "1991-yil", "1992-yil"], correct: 1 }
             ],
             "Huquq": [
-                { q: "Konstitutsiya kuni qachon?", a: ["8-dekabr", "1-sentyabr", "21-mart"], c: 0 }
+                { question: "O'zbekiston Konstitutsiyasi qachon qabul qilingan?", options: ["8-dekabr", "1-sentyabr", "10-dekabr"], correct: 0 }
             ],
             "Geografiya": [
-                { q: "Eng uzun daryo?", a: ["Sirdaryo", "Amudaryo", "Zarafshon"], c: 1 }
+                { question: "O'zbekistonning eng uzun daryosi qaysi?", options: ["Amudaryo", "Sirdaryo", "Zarafshon"], correct: 0 }
+            ],
+            "Adabiyot": [
+                { question: "'O'tkan kunlar' romani muallifi kim?", options: ["Cho'lpon", "Abdulla Qodiriy", "Fitrat"], correct: 1 }
             ]
         };
 
-        let currentScore = 0;
-        let timeLeft = 10;
-        let timer;
+        let totalScore = 0;
+        let quizTimer;
 
-        function startTest(cat) {
-            const qList = questions[cat];
-            if(!qList) return;
+        function openQuiz(category) {
+            const questions = quizData[category];
+            if(!questions) return;
+            
+            // Танланган йўналишдан битта тасодифий савол олиш
+            const selectedQ = questions[Math.floor(Math.random() * questions.length)];
+            
             document.getElementById('quiz-modal').style.display = 'flex';
-            showQuestion(qList[0]);
-        }
-
-        function showQuestion(q) {
-            document.getElementById('question-text').innerText = q.q;
-            const optDiv = document.getElementById('options');
-            optDiv.innerHTML = "";
-            q.a.forEach((opt, i) => {
-                const btn = document.createElement('button');
-                btn.innerText = opt;
-                btn.style.padding = "10px"; btn.style.margin = "5px";
-                btn.onclick = () => {
-                    if(i === q.c) { currentScore += 10; alert("To'g'ri!"); }
-                    closeTest();
+            document.getElementById('question-text').innerText = selectedQ.question;
+            
+            const optionsContainer = document.getElementById('options-box');
+            optionsContainer.innerHTML = "";
+            
+            selectedQ.options.forEach((text, index) => {
+                const button = document.createElement('button');
+                button.className = "option-btn";
+                button.innerText = text;
+                button.onclick = () => {
+                    if(index === selectedQ.correct) {
+                        totalScore += 10;
+                        alert("To'g'ri жавоб! +10 ball");
+                    } else {
+                        alert("Xato жавоб!");
+                    }
+                    closeQuiz();
                 };
-                optDiv.appendChild(btn);
+                optionsContainer.appendChild(button);
             });
+
+            runTimer();
         }
 
-        function closeTest() {
+        function runTimer() {
+            let seconds = 10;
+            document.getElementById('timer-display').innerText = seconds;
+            clearInterval(quizTimer);
+            quizTimer = setInterval(() => {
+                seconds--;
+                document.getElementById('timer-display').innerText = seconds;
+                if(seconds <= 0) {
+                    clearInterval(quizTimer);
+                    closeQuiz();
+                    alert("Vaqt tugadi!");
+                }
+            }, 1000);
+        }
+
+        function closeQuiz() {
+            clearInterval(quizTimer);
             document.getElementById('quiz-modal').style.display = 'none';
-            document.getElementById('score').innerText = currentScore;
+            document.getElementById('score-val').innerText = totalScore;
+            
+            // Унвонни янгилаш
+            if(totalScore >= 50) document.getElementById('rank-val').innerText = "Uchenik";
+            if(totalScore >= 100) document.getElementById('rank-val').innerText = "Student";
         }
     </script>
 </body>
