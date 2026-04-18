@@ -13,15 +13,15 @@
             <p class="author">created by “A.K.Djuginisov”</p>
             
             <div class="user-card">
-                <div class="avatar-wrapper">
-                    <img src="https://via.placeholder.com/100" alt="Avatar" class="user-avatar">
-                </div>
                 <div class="user-meta">
-                    <h2 id="user-display-name">Foydalanuvchi nomi</h2>
+                    <h2 id="user-display-name">Foydalanuvchi</h2>
                     <div class="score-display">
                         <span class="cup-icon">🏆</span>
                         <span id="current-points">0</span> ball
                     </div>
+                </div>
+                <div class="avatar-wrapper">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Avatar" class="user-avatar">
                 </div>
             </div>
 
@@ -39,14 +39,14 @@
                 <section class="rating-section">
                     <h3>Top 10 Reyting</h3>
                     <ul id="leaderboard">
-                        <li class="rank-1 gold-gradient">1. Ism - Bakalavr (1500)</li>
-                        <li class="rank-2 silver-gradient">2. Ism - Student (1200)</li>
-                        <li class="rank-3 bronze-gradient">3. Ism - Uchenik (900)</li>
+                        <li class="gold-gradient">1. Artur - Bakalavr (1500)</li>
+                        <li class="silver-gradient">2. Malika - Student (1200)</li>
+                        <li class="bronze-gradient">3. Sardor - Uchenik (900)</li>
                     </ul>
                 </section>
 
                 <section class="super-quiz-section">
-                    <button class="super-quiz-btn">СУПЕР САВОЛ-ЖАВОБ</button>
+                    <button class="super-quiz-btn" onclick="alert('Tez kunda!')">СУПЕР САВОЛ-ЖАВОБ</button>
                     <div class="super-winners">
                         <div class="winner-slot gold-gradient">1</div>
                         <div class="winner-slot silver-gradient">2</div>
@@ -63,8 +63,8 @@
                     <div class="cat-card" onclick="selectCategory('Geografiya')">🌍 Geografiya</div>
                     <div class="cat-card" onclick="selectCategory('Adabiyot')">📚 Adabiyot</div>
                     <div class="cat-card" onclick="selectCategory('Fizika')">⚛️ Fizika</div>
-                    <div class="cat-card" onclick="selectCategory('Ximiya')">🧪 Ximiya</div>
-                    <div class="cat-card" onclick="selectCategory('Astronimaya')">🌠 Astronimaya</div>
+                    <div class="cat-card" onclick="selectCategory('Kimyo')">🧪 Kimyo</div>
+                    <div class="cat-card" onclick="selectCategory('Astronomiya')">🌠 Astronomiya</div>
                 </div>
             </section>
         </div>
@@ -73,126 +73,12 @@
     <div id="quiz-modal" class="modal">
         <div class="modal-content">
             <div id="timer">10</div>
-            <h4 id="question-text">Savol matni shu yerda chiqadi?</h4>
+            <h4 id="question-text">Savol yuklanmoqda...</h4>
             <div class="options-grid" id="options-container"></div>
         </div>
     </div>
-const questionsBase = {
-    "Huquqshunoslik": [
-        { id: 1, question: "O'zbekiston Respublikasi Konstitutsiyasi qachon qabul qilingan?", options: ["1992-yil 8-dekabr", "1991-yil 1-sentyabr", "1993-yil 10-dekabr", "1990-yil 20-iyun"], correct: 0 },
-        { id: 2, question: "Davlat boshlig'i kim?", options: ["Bosh vazir", "Prezident", "Senat raisi", "Oliy Majlis"], correct: 1 },
-        { id: 3, question: "Konstitutsiyaning nechanchi moddasida inson huquqlari yozilgan?", options: ["13-modda", "18-modda", "24-modda", "Hammasi"], correct: 3 },
-        { id: 4, question: "Sud hokimiyati kimga tegishli?", options: ["Adliya vazirligiga", "Prezidentga", "Sudlarga", "Prokuraturaga"], correct: 2 },
-        { id: 5, question: "O'zbekiston bayrog'ida nechta yulduz bor?", options: ["10 ta", "14 ta", "12 ta", "15 ta"], correct: 2 },
-        { id: 6, question: "Voyaga yetgan fuqaro necha yoshdan saylash huquqiga ega?", options: ["16", "18", "21", "25"], correct: 1 },
-        { id: 7, question: "O'zbekiston Respublikasining madhiyasi muallifi kim?", options: ["Abdulla Oripov", "Erkin Vohidov", "Zulfiya", "Cho'lpon"], correct: 0 },
-        { id: 8, question: "Qonun chiqaruvchi oliy davlat vakillik organi?", options: ["Vazirlar Mahkamasi", "Oliy Majlis", "Oliy Sud", "Hokimiyat"], correct: 1 },
-        { id: 9, question: "Mahalliy davlat hokimiyati organlariga kim boshchilik qiladi?", options: ["Deputatlar", "Hokimlar", "Vazirlar", "Raislar"], correct: 1 },
-        { id: 10, question: "O'zbekiston Respublikasi poytaxti qaysi shahar?", options: ["Samarqand", "Buxoro", "Toshkent", "Xiva"], correct: 2 },
-        { id: 11, question: "Oilaviy munosabatlar qaysi kodeks bilan tartibga solinadi?", options: ["Jinoyat", "Fuqarolik", "Oila kodeksi", "Mehnat"], correct: 2 },
-        { id: 12, question: "Fuqaroning burchi nima?", options: ["Soliq to'lash", "Tabiatni asrash", "Vatanni himoya qilish", "Hammasi"], correct: 3 },
-        { id: 13, question: "Konstitutsiyaning oxirgi tahriri qachon qabul qilindi?", options: ["2023-yil", "2020-yil", "2018-yil", "2022-yil"], correct: 0 },
-        { id: 14, question: "Inson huquqlari umumjahon deklaratsiyasi qachon qabul qilingan?", options: ["1945", "1948", "1950", "1991"], correct: 1 }
-    ],
-    "Tarix": [
-        { id: 15, question: "Amir Temur qachon tug'ilgan?", options: ["1336-yil", "1342-yil", "1405-yil", "1300-yil"], correct: 0 },
-        { id: 16, question: "O'zbekiston qachon mustaqil bo'ldi?", options: ["1990", "1991", "1992", "1989"], correct: 1 },
-        { id: 17, question: "Alisher Navoiy qaysi asrda yashagan?", options: ["XIV asr", "XV asr", "XVI asr", "XIII asr"], correct: 1 },
-        { id: 18, question: "G'aznaviylar davlatiga kim asos solgan?", options: ["Mahmud G'aznaviy", "Alp-tegin", "Subuk-tegin", "Oltun-tosh"], correct: 1 },
-        { id: 19, question: "Qadimgi Xorazm davlati poytaxti?", options: ["Urganch", "Kat", "Xiva", "Nukus"], correct: 1 },
-        { id: 20, question: "Zahiriddin Muhammad Bobur qayerda tug'ilgan?", options: ["Samarqand", "Andijon", "Namangan", "Qobul"], correct: 1 },
-        { id: 21, question: "Buyuk ipak yo'li qayerdan boshlangan?", options: ["Xitoy", "Hindiston", "Eron", "Rim"], correct: 0 },
-        { id: 22, question: "Jaloliddin Manguberdi kimga qarshi jang qilgan?", options: ["Ruslarga", "Mo'g'ullarga", "Arablarga", "Forslarga"], correct: 1 },
-        { id: 23, question: "Ibn Sino qaysi sohada mashhur bo'lgan?", options: ["Fizika", "Tibbiyot", "Matematika", "Astronomiya"], correct: 1 },
-        { id: 24, question: "Birinchi o'zbek alifbosi qachon lotin tiliga o'tdi?", options: ["1929", "1993", "1940", "1923"], correct: 1 },
-        { id: 25, question: "Mirzo Ulug'bek qaysi shaharda rasadxona qurgan?", options: ["Buxoro", "Samarqand", "Toshkent", "Shahrisabz"], correct: 1 },
-        { id: 26, question: "Qoraxoniylar davlati poytaxti qayer bo'lgan?", options: ["Bolosog'un", "Samarqand", "Buxoro", "Qashqar"], correct: 0 },
-        { id: 27, question: "Amir Temurning poytaxti qaysi shahar bo'lgan?", options: ["Shahrisabz", "Toshkent", "Samarqand", "Hirot"], correct: 2 },
-        { id: 28, question: "O'zbekistonning birinchi prezidenti kim?", options: ["I.Karimov", "Sh.Mirziyoyev", "Y.Oxunboboyev", "U.Yusupov"], correct: 0 }
-    ],
-    "Geografiya": [
-        { id: 29, question: "Eng baland cho'qqi qaysi?", options: ["Everest", "K2", "G'alaba", "Pomir"], correct: 0 },
-        { id: 30, question: "O'zbekistonning eng uzun daryosi?", options: ["Sirdaryo", "Amudaryo", "Zarafshon", "Qashqadaryo"], correct: 1 },
-        { id: 31, question: "Qaysi qit'a eng katta?", options: ["Afrika", "Osiyo", "Amerika", "Antarktida"], correct: 1 },
-        { id: 32, question: "O'zbekiston necha davlat bilan chegaradosh?", options: ["4", "5", "6", "3"], correct: 1 },
-        { id: 33, question: "Dunyoning eng chuqur ko'li?", options: ["Orol", "Baykal", "Kaspiy", "Viktoriya"], correct: 1 },
-        { id: 34, question: "Qizilqum cho'li qayerda joylashgan?", options: ["Qozog'iston", "O'zbekiston", "Turkmaniston", "Hammasi"], correct: 3 },
-        { id: 35, question: "Dunyo aholisi qancha?", options: ["5 mlrd", "8 mlrd", "10 mlrd", "6 mlrd"], correct: 1 },
-        { id: 36, question: "Afrika qit'asining eng katta cho'li?", options: ["Gobi", "Sahroi Kabir", "Namib", "Qoraqum"], correct: 1 },
-        { id: 37, question: "Orol dengizi hozir qanday holatda?", options: ["To'lyapti", "Quryapti", "O'zgarmagan", "Suvi chuchuk"], correct: 1 },
-        { id: 38, question: "Yaponiyaning poytaxti?", options: ["Seul", "Pekin", "Tokio", "Bankok"], correct: 2 },
-        { id: 39, question: "Eng kichik davlat?", options: ["Monako", "Vatikan", "San-Marino", "Andorra"], correct: 1 },
-        { id: 40, question: "O'zbekistonning eng baland nuqtasi?", options: ["Hazrati Sulton", "Adelung", "Beshtor", "Bobotog'"], correct: 0 },
-        { id: 41, question: "Yer sayyorasining nechta okeani bor?", options: ["4 ta", "5 ta", "3 ta", "6 ta"], correct: 1 },
-        { id: 42, question: "Quyoshga eng yaqin sayyora?", options: ["Yer", "Mars", "Merkuriy", "Venera"], correct: 2 }
-    ],
-    "Adabiyot": [
-        { id: 43, question: "O'tkan kunlar romani muallifi?", options: ["Abdulla Qodiriy", "Cho'lpon", "Fitrat", "G'afur G'ulom"], correct: 0 },
-        { id: 44, question: "Hamsa asari necha dostondan iborat?", options: ["3 ta", "5 ta", "7 ta", "4 ta"], correct: 1 },
-        { id: 45, question: "Zulfiya ismli shoira nima haqida ko'proq yozgan?", options: ["Vatan", "Muhabbat va sadoqat", "Tarix", "Tabiat"], correct: 1 },
-        { id: 46, question: "O'zbekiston xalq shoiri, 'Seni kuylayman Vatan' asari muallifi?", options: ["A. Oripov", "E. Vohidov", "M. Yusuf", "Hammasi"], correct: 3 },
-        { id: 47, question: "Kecha va kunduz asari muallifi?", options: ["Fitrat", "Cho'lpon", "Hamza", "Oybek"], correct: 1 },
-        { id: 48, question: "Dante Aligyeri qaysi asarni yozgan?", options: ["Ilohiy komediya", "Urush va tinchlik", "Otello", "Don Kixot"], correct: 0 },
-        { id: 49, question: "Dunyoning eng qadimiy eposi?", options: ["Gilgamesh", "Alpomish", "Iliada", "Manas"], correct: 0 },
-        { id: 50, question: "Boburnoma qanday janrda yozilgan?", options: ["Roman", "Esdalik (Memuar)", "G'azal", "Doston"], correct: 1 },
-        { id: 51, question: "Shum bola asari muallifi?", options: ["O'tkir Hoshimov", "G'afur G'ulom", "Said Ahmad", "Oybek"], correct: 1 },
-        { id: 52, question: "Alisher Navoiyning taxallusi nima bo'lgan?", options: ["Foniy", "Navoiy", "Ikkusi ham", "Hech biri"], correct: 2 },
-        { id: 53, question: "Uilyam Shekspir qayerlik?", options: ["Fransiya", "Angliya", "Germaniya", "Italiya"], correct: 1 },
-        { id: 54, question: "O'zbek xalq dostonlarining eng mashhuri?", options: ["Alpomish", "Go'ro'g'li", "Kuntug'mish", "Hammasi"], correct: 3 },
-        { id: 55, question: "Pushkin qaysi tilda ijod qilgan?", options: ["Fransuz", "Ingliz", "Rus", "Nemis"], correct: 2 },
-        { id: 56, question: "Zaynab va Omon asari muallifi?", options: ["Hamid Olimjon", "Zulfiya", "G'. G'ulom", "M. Shayxzoda"], correct: 0 }
-    ],
-    "Fizika": [
-        { id: 57, question: "Yorug'lik tezligi qancha?", options: ["300 000 km/s", "150 000 km/s", "1 mln km/s", "Tezligi yo'q"], correct: 0 },
-        { id: 58, question: "Nyutonning nechta qonuni bor?", options: ["1", "2", "3", "4"], correct: 2 },
-        { id: 59, question: "Elektr qarshilik birligi nima?", options: ["Volt", "Amper", "Om", "Vatt"], correct: 2 },
-        { id: 60, question: "Energiyaning saqlanish qonunini kim ochgan?", options: ["Eynshteyn", "Lomonosov", "Nyuton", "Faradey"], correct: 1 },
-        { id: 61, question: "Ovoz tezligi qayerda tezroq?", options: ["Havoda", "Suvda", "Vakuumda", "Temirda"], correct: 3 },
-        { id: 62, question: "Gravitatsiya nima?", options: ["Tortishish kuchi", "Itarish kuchi", "Elektr kuchi", "Issiqlik"], correct: 0 },
-        { id: 63, question: "Atoma markazida nima joylashgan?", options: ["Elektronlar", "Yadro", "Protonlar", "Neytronlar"], correct: 1 },
-        { id: 64, question: "Temperatura birligi (SI)?", options: ["Selsiy", "Kelvin", "Farengeyt", "Kaloriya"], correct: 1 },
-        { id: 65, question: "Zichlik formulasi?", options: ["m/V", "m*V", "F/a", "E/c"], correct: 0 },
-        { id: 66, question: "Suyuqlikning bosimi qanday asbob bilan o'lchanadi?", options: ["Barometr", "Manometr", "Termometr", "Ampermetr"], correct: 1 },
-        { id: 67, question: "Transformer nima uchun ishlatiladi?", options: ["Kuchlanishni o'zgartirish", "Tokni to'xtatish", "Isitish", "Yoritish"], correct: 0 },
-        { id: 68, question: "Yerning gravitatsiya doimiysi (g) qancha?", options: ["9.8 m/s2", "10.5 m/s2", "8.9 m/s2", "12 m/s2"], correct: 0 },
-        { id: 69, question: "Magnitning nechta qutbi bor?", options: ["1", "2", "3", "4"], correct: 1 },
-        { id: 70, question: "Radioaktivlikni kim kashf qilgan?", options: ["Kyuri", "Bekkerel", "Rentgen", "Eynshteyn"], correct: 1 }
-    ],
-    "Kimyo": [
-        { id: 71, question: "Suvning kimyoviy formulasi?", options: ["H2O", "CO2", "O2", "NaCl"], correct: 0 },
-        { id: 72, question: "Osh tuzining formulasi?", options: ["KCl", "NaCl", "NaOH", "HCl"], correct: 1 },
-        { id: 73, question: "Havoda eng ko'p bo'lgan gaz?", options: ["Kislorod", "Azot", "Argon", "Vodorod"], correct: 1 },
-        { id: 74, question: "Oltinning ramzi?", options: ["Ag", "Au", "Fe", "Cu"], correct: 1 },
-        { id: 75, question: "Kimyoviy elementlar davriy jadvalini kim tuzgan?", options: ["Lomonosov", "Mendeleyev", "Nobel", "Boyl"], correct: 1 },
-        { id: 76, question: "Olmos nima elementdan tashkil topgan?", options: ["Temir", "Uglerod", "Kalsiy", "Silisiy"], correct: 1 },
-        { id: 77, question: "Kislotaning rangi lakmusda qanday o'zgaradi?", options: ["Ko'k", "Qizil", "Sariq", "Yashil"], correct: 1 },
-        { id: 78, question: "Eng yengil element?", options: ["Geliy", "Vodorod", "Litiy", "Kislorod"], correct: 1 },
-        { id: 79, question: "Temirning zanglashi qanday jarayon?", options: ["Fizik", "Kimyoviy", "Biologik", "Mexanik"], correct: 1 },
-        { id: 80, question: "Fotosintez uchun nima kerak?", options: ["CO2 va suv", "Kislorod", "Azot", "Metan"], correct: 0 },
-        { id: 81, question: "Atmosferaning ozon qatlami nimadan himoya qiladi?", options: ["Ultrobinafsha nurlar", "Meteorit", "Shamol", "Sovuq"], correct: 0 },
-        { id: 82, question: "Molekula nima?", options: ["Eng kichik zarracha", "Atomlar yig'indisi", "Ion", "Elektron"], correct: 1 },
-        { id: 83, question: "Sulfat kislota formulasi?", options: ["HCl", "H2SO4", "HNO3", "CH4"], correct: 1 },
-        { id: 84, question: "Organik kimyo nimani o'rganadi?", options: ["Uglerod birikmalari", "Metallarni", "Gazlarni", "Suvni"], correct: 0 }
-    ],
-    "Astronomiya": [
-        { id: 85, question: "Quyosh sistemasida nechta sayyora bor?", options: ["8 ta", "9 ta", "7 ta", "10 ta"], correct: 0 },
-        { id: 86, question: "Eng katta sayyora?", options: ["Saturn", "Yupiter", "Neptun", "Mars"], correct: 1 },
-        { id: 87, question: "Oy Yerning nimasidir?", options: ["Sayyorasi", "Yo'ldoshi", "Yulduzi", "Kometasi"], correct: 1 },
-        { id: 88, question: "Somon yo'li nima?", options: ["Yulduz", "Galaktika", "Sayyora", "Tumanlik"], correct: 1 },
-        { id: 89, question: "Qizil sayyora deb qaysi birini atashadi?", options: ["Venera", "Mars", "Merkuriy", "Pluton"], correct: 1 },
-        { id: 90, question: "Quyosh o'zi nima?", options: ["Sayyora", "Yulduz", "Kometa", "Asteroid"], correct: 1 },
-        { id: 91, question: "Yil qancha davom etadi?", options: ["365 kun", "366 kun", "365 kun 6 soat", "360 kun"], correct: 2 },
-        { id: 92, question: "Yerning eng yaqin yulduzi?", options: ["Sirius", "Quyosh", "Shimol yulduzi", "Alfa-Sentavr"], correct: 1 },
-        { id: 93, question: "Halqalari eng yaqqol ko'rinadigan sayyora?", options: ["Saturn", "Uran", "Yupiter", "Neptun"], correct: 0 },
-        { id: 94, question: "Quyosh tutilishi qachon bo'ladi?", options: ["Oy Quyoshni to'sganda", "Yer Quyoshni to'sganda", "Mars kelganda", "Kechasi"], correct: 0 },
-        { id: 95, question: "Kosmosga uchgan birinchi inson?", options: ["Nil Armstrong", "Yuriy Gagarin", "Valentina Tereshkova", "Ilon Mask"], correct: 1 },
-        { id: 96, question: "Oyda atmosfera bormi?", options: ["Bor", "Yo'q", "Juda qalin", "Suvli"], correct: 1 },
-        { id: 97, question: "Qora tuynuk (Black hole) nima?", options: ["Kuchli gravitatsiyali joy", "Bo'shliq", "Yulduz portlashi", "Sayyora"], correct: 0 },
-        { id: 98, question: "Yulduzlar nima hisobiga yonadi?", options: ["Olov", "Termoyadro reaksiyasi", "Elektr", "Ko'mir"], correct: 1 },
-        { id: 99, question: "Teleskopni kim ixtiro qilgan (yoki takomillashtirgan)?", options: ["Galiley", "Nyuton", "Kopernik", "Eynshteyn"], correct: 0 },
-        { id: 100, question: "Koinot qanday paydo bo'lgan?", options: ["Katta portlash", "Sekin o'sish", "Doim bo'lgan", "Noma'lum"], correct: 0 }
-    ]
-};
+
+    <script src="questions.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
