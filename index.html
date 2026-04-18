@@ -6,184 +6,221 @@
     <title>Intelectus Uzbekistan</title>
     <style>
         :root {
-            --gold-main: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --noir-bg: radial-gradient(circle at center, #2c2c2c 0%, #000000 100%);
+            --gold-grad: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --noir-bg: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         body {
-            margin: 0; font-family: 'Segoe UI', sans-serif;
-            background: var(--noir-bg); color: white;
-            min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+            background: var(--noir-bg); color: white; font-family: 'Segoe UI', sans-serif;
+            margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center;
         }
 
-        /* Header */
-        .main-header { width: 100%; text-align: center; padding: 20px 0; }
+        /* 3D Gold Logo */
+        .header { text-align: center; margin-top: 20px; }
         .logo-3d {
-            font-size: 35px; font-weight: 900; margin: 0;
-            background: var(--gold-main); -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; text-transform: uppercase;
+            font-size: 42px; font-weight: 900; margin: 0;
+            background: var(--gold-grad); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(4px 4px 5px rgba(0,0,0,0.8));
+            text-transform: uppercase; letter-spacing: 2px;
         }
-        .author { color: #d4af37; font-size: 12px; margin-top: 5px; opacity: 0.8; }
+        .creator { color: #d4af37; font-size: 14px; font-weight: 300; margin-top: -5px; }
 
-        /* Stats Card */
-        .stats-container {
-            display: flex; gap: 20px; margin: 20px 0;
-            border: 2px solid #d4af37; padding: 15px 40px; border-radius: 15px;
-            background: rgba(0,0,0,0.5); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        /* User Info Section */
+        .top-nav {
+            width: 90%; max-width: 1000px; display: flex; justify-content: space-between;
+            align-items: flex-start; margin-top: 30px;
         }
-        .stat-item span { color: #fcf6ba; font-weight: bold; font-size: 20px; }
+        .user-info { display: flex; align-items: center; gap: 15px; }
+        .avatar-border {
+            width: 70px; height: 70px; border-radius: 50%;
+            padding: 3px; background: var(--gold-grad);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+        .avatar-border img { width: 100%; height: 100%; border-radius: 50%; background: #000; }
+        .user-details h3 { margin: 0; font-size: 18px; color: #fcf6ba; }
+        .score-box { display: flex; align-items: center; gap: 5px; color: #d4af37; font-weight: bold; }
 
-        /* Grid */
-        .categories-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px; width: 90%; max-width: 800px; margin-top: 20px;
+        /* Rank Progress */
+        .rank-card {
+            border: 2px solid #d4af37; padding: 15px; border-radius: 12px;
+            background: var(--glass); min-width: 250px; text-align: center;
+        }
+        .progress-bar {
+            width: 100%; height: 10px; background: #333; border-radius: 5px; margin-top: 10px;
+            overflow: hidden; border: 1px solid #555;
+        }
+        #progress-fill { height: 100%; background: var(--gold-grad); width: 0%; transition: 0.5s; }
+
+        /* Split Layout */
+        .main-container {
+            display: flex; width: 95%; max-width: 1200px; gap: 20px; margin-top: 30px;
+            flex-wrap: wrap;
         }
 
+        /* Left Side: Rating & Super Quiz */
+        .left-panel { flex: 1; min-width: 300px; }
+        .panel-box {
+            background: var(--glass); border: 1px solid #d4af37; 
+            padding: 20px; border-radius: 15px; margin-bottom: 20px;
+        }
+        .rank-item {
+            display: flex; justify-content: space-between; padding: 10px;
+            border-radius: 8px; margin-bottom: 8px; font-weight: bold;
+        }
+        .gold { background: var(--gold-grad); color: black; }
+        .silver { background: linear-gradient(135deg, #bdc3c7, #2c3e50); color: white; }
+        .bronze { background: linear-gradient(135deg, #cd7f32, #593315); color: white; }
+
+        /* Right Side: Categories */
+        .right-panel { flex: 2; min-width: 320px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
         .cat-card {
-            background: rgba(255,255,255,0.05); border: 2px solid #d4af37;
-            padding: 25px; border-radius: 15px; cursor: pointer;
-            text-align: center; font-weight: bold; transition: 0.3s;
-            text-transform: uppercase; letter-spacing: 1px;
+            background: rgba(255,255,255,0.03); border: 1.5px solid #d4af37;
+            padding: 20px; border-radius: 15px; cursor: pointer; text-align: center;
+            transition: 0.3s; font-weight: bold;
         }
-        .cat-card:hover {
-            background: var(--gold-main); color: black;
-            transform: translateY(-5px); box-shadow: 0 5px 15px rgba(212,175,55,0.4);
-        }
+        .cat-card:hover { background: var(--gold-grad); color: black; transform: scale(1.03); }
 
-        /* Quiz Modal */
+        /* Modal / Quiz UI */
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.98); justify-content: center; align-items: center; z-index: 1000;
+            background: rgba(0,0,0,0.95); justify-content: center; align-items: center; z-index: 1000;
         }
-        .modal-content {
-            background: #111; border: 2px solid #d4af37; padding: 40px;
-            border-radius: 25px; width: 90%; max-width: 500px; text-align: center;
+        .quiz-container {
+            background: #111; border: 2px solid #d4af37; padding: 30px;
+            border-radius: 20px; width: 90%; max-width: 500px; text-align: center;
         }
-        #timer { font-size: 40px; color: #fcf6ba; font-weight: bold; margin-bottom: 20px; }
-        .question-text { font-size: 22px; margin-bottom: 30px; line-height: 1.5; }
-        .options-grid { display: flex; flex-direction: column; gap: 12px; }
-        .opt-btn {
-            padding: 15px; border: 1px solid #d4af37; background: transparent;
-            color: white; border-radius: 10px; cursor: pointer; font-size: 16px; transition: 0.2s;
+        .timer { font-size: 32px; color: gold; font-weight: bold; margin-bottom: 15px; }
+        .option-btn {
+            display: block; width: 100%; padding: 15px; margin: 10px 0;
+            background: transparent; color: white; border: 1px solid #d4af37;
+            border-radius: 10px; cursor: pointer; transition: 0.2s;
         }
-        .opt-btn:hover { background: #d4af37; color: black; font-weight: bold; }
+        .option-btn:hover { background: #d4af37; color: black; }
     </style>
 </head>
 <body>
 
-    <header class="main-header">
-        <h1 class="logo-3d">INTELECTUS UZBEKISTAN</h1>
-        <div class="author">created by “A.K.Djuginisov”</div>
+    <header class="header">
+        <h1 class="logo-3d">Intelectus Uzbekistan</h1>
+        <div class="creator">created by “A.K.Djuginisov”</div>
     </header>
 
-    <div class="stats-container">
-        <div class="stat-item">Ball: <span id="score-val">0</span></div>
-        <div class="stat-item">Unvon: <span id="rank-val">Novichok</span></div>
+    <div class="top-nav">
+        <div class="user-info">
+            <div class="avatar-border">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User">
+            </div>
+            <div class="user-details">
+                <h3 id="username">Foydalanuvchi</h3>
+                <div class="score-box">🏆 <span id="total-score">0</span> ball</div>
+            </div>
+        </div>
+        <div class="rank-card">
+            <div>Hozirgi holat: <strong id="rank-name">Novichok</strong></div>
+            <div class="progress-bar"><div id="progress-fill"></div></div>
+            <small>Keyingi unvonga: <span id="progress-text">0</span>%</small>
+        </div>
     </div>
 
-    <div class="categories-grid">
-        <div class="cat-card" onclick="startQuiz('Tarix')">📜 Tarix</div>
-        <div class="cat-card" onclick="startQuiz('Huquq')">⚖️ Huquq</div>
-        <div class="cat-card" onclick="startQuiz('Geografiya')">🌍 Geografiya</div>
-    </div>
+    <main class="main-container">
+        <div class="left-panel">
+            <div class="panel-box">
+                <h3 style="color: gold; text-align: center;">TOP 10 REYTING</h3>
+                <div class="rank-item gold">1. Artur — 1500 ball</div>
+                <div class="rank-item silver">2. Sardor — 1200 ball</div>
+                <div class="rank-item bronze">3. Malika — 900 ball</div>
+                <div class="rank-item" style="border: 1px solid #555;">4. Temur — 850 ball</div>
+            </div>
+
+            <div class="panel-box" style="text-align: center;">
+                <button onclick="startQuiz('Super')" style="background: var(--gold-grad); border: none; padding: 15px; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer;">
+                    СУПЕР САВОЛ-ЖАВОБ
+                </button>
+                <p><small>G'oliblar fotosi:</small></p>
+                <div style="display: flex; justify-content: space-around;">
+                    <div class="avatar-border" style="width: 40px; height: 40px;"></div>
+                    <div class="avatar-border" style="width: 40px; height: 40px;"></div>
+                    <div class="avatar-border" style="width: 40px; height: 40px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <h3 style="color: gold;">YO'NALISHLAR</h3>
+            <div class="grid">
+                <div class="cat-card" onclick="openMode('Huquq')">⚖️ Huquqшунослик</div>
+                <div class="cat-card" onclick="openMode('Tarix')">📜 Tarix</div>
+                <div class="cat-card" onclick="openMode('Geografiya')">🌍 Geografiya</div>
+                <div class="cat-card" onclick="openMode('Adabiyot')">📚 Adabiyot</div>
+                <div class="cat-card" onclick="openMode('Fizika')">⚛️ Fizika</div>
+                <div class="cat-card" onclick="openMode('Kimyo')">🧪 Kimyo</div>
+                <div class="cat-card" onclick="openMode('Astronomiya')">🌠 Astronomiya</div>
+            </div>
+        </div>
+    </main>
 
     <div id="quiz-modal" class="modal">
-        <div class="modal-content">
-            <div id="timer">10</div>
-            <div id="q-text" class="question-text">Савол юкланмоқда...</div>
-            <div id="options-box" class="options-grid"></div>
+        <div class="quiz-container">
+            <div id="timer" class="timer">10</div>
+            <h3 id="question-text">Savol yuklanmoqda...</h3>
+            <div id="options-box"></div>
         </div>
     </div>
 
     <script>
-        const quizData = {
-            "Tarix": [
-                { q: "Amir Temur qachon tug'ilgan?", o: ["1336-yil", "1342-yil", "1405-yil"], c: 0 },
-                { q: "O'zbekiston mustaqilligi qachon?", o: ["1990-yil", "1991-yil", "1992-yil"], c: 1 },
-                { q: "Alisher Navoiy nechanchi asrda yashagan?", o: ["14-asr", "15-asr", "16-asr"], c: 1 }
-            ],
-            "Huquq": [
-                { q: "Konstitutsiya kuni qachon?", o: ["8-dekabr", "1-sentyabr", "21-mart"], c: 0 },
-                { q: "O'zbekiston bayrog'ida nechta yulduz bor?", o: ["10 ta", "14 ta", "12 ta"], c: 2 }
-            ],
-            "Geografiya": [
-                { q: "Eng uzun daryomiz?", o: ["Amudaryo", "Sirdaryo", "Zarafshon"], c: 0 },
-                { q: "Eng baland cho'qqi?", o: ["Everest", "Hazrati Sulton", "G'alaba"], c: 1 }
-            ]
-        };
+        // Саволлар ва логика
+        let userScore = 0;
+        let correctAnswers = 0;
+        const ranks = ["Novichok", "Uchenik", "Student", "Bakalavr", "Magistr", "Professor"];
 
-        let score = 0;
-        let timerInterval;
-        let currentQuestions = [];
-        let qIndex = 0;
+        function openMode(cat) {
+            alert(cat + " yo'nalishi tanlandi. 10 ta kunlik testni boshlaymizmi?");
+            startQuiz(cat);
+        }
 
         function startQuiz(cat) {
-            // Саволларни аралаштириш (тасодифий қилиш)
-            currentQuestions = [...quizData[cat]].sort(() => Math.random() - 0.5);
-            qIndex = 0;
             document.getElementById('quiz-modal').style.display = 'flex';
-            showNextQuestion();
+            // Бу ерга саволларни юклаш функцияси келади
+            loadQuestion();
         }
 
-        function showNextQuestion() {
-            if (qIndex >= currentQuestions.length) {
-                alert("Йўналишдаги барча саволлар тугади!");
-                closeQuiz();
-                return;
-            }
-
-            const data = currentQuestions[qIndex];
-            document.getElementById('q-text').innerText = data.q;
+        function loadQuestion() {
+            document.getElementById('question-text').innerText = "O'zbekiston poytaxti qayer?";
             const box = document.getElementById('options-box');
-            box.innerHTML = "";
-
-            data.o.forEach((opt, i) => {
-                const btn = document.createElement('button');
-                btn.className = "opt-btn";
-                btn.innerText = opt;
-                btn.onclick = () => checkAnswer(i, data.c);
-                box.appendChild(btn);
-            });
-
-            startTimer();
+            box.innerHTML = `
+                <button class="option-btn" onclick="answer(true)">Toshkent</button>
+                <button class="option-btn" onclick="answer(false)">Samarqand</button>
+                <button class="option-btn" onclick="answer(false)">Buxoro</button>
+                <button class="option-btn" onclick="answer(false)">Xiva</button>
+            `;
         }
 
-        function checkAnswer(selected, correct) {
-            clearInterval(timerInterval);
-            if (selected === correct) {
-                score += 10;
-                updateStats();
+        function answer(isCorrect) {
+            if(isCorrect) {
+                userScore += 1;
+                correctAnswers += 1;
+                alert("To'g'ri!");
+            } else {
+                alert("Xato!");
             }
-            qIndex++;
-            showNextQuestion();
-        }
-
-        function startTimer() {
-            let left = 10;
-            document.getElementById('timer').innerText = left;
-            clearInterval(timerInterval);
-            timerInterval = setInterval(() => {
-                left--;
-                document.getElementById('timer').innerText = left;
-                if (left <= 0) {
-                    clearInterval(timerInterval);
-                    qIndex++;
-                    showNextQuestion();
-                }
-            }, 1000);
-        }
-
-        function updateStats() {
-            document.getElementById('score-val').innerText = score;
-            const rank = document.getElementById('rank-val');
-            if (score >= 50) rank.innerText = "Uchenik";
-            if (score >= 100) rank.innerText = "Student";
-            if (score >= 200) rank.innerText = "Bakalavr";
-        }
-
-        function closeQuiz() {
-            clearInterval(timerInterval);
+            updateUI();
             document.getElementById('quiz-modal').style.display = 'none';
+        }
+
+        function updateUI() {
+            document.getElementById('total-score').innerText = userScore;
+            
+            // Unvon va progress
+            let rankIdx = Math.floor(correctAnswers / 100);
+            if(rankIdx > 5) rankIdx = 5;
+            
+            document.getElementById('rank-name').innerText = ranks[rankIdx];
+            let progress = correctAnswers % 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+            document.getElementById('progress-text').innerText = progress;
         }
     </script>
 </body>
