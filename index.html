@@ -171,57 +171,122 @@
     </div>
 
     <script>
-        // Саволлар ва логика
-        let userScore = 0;
-        let correctAnswers = 0;
-        const ranks = ["Novichok", "Uchenik", "Student", "Bakalavr", "Magistr", "Professor"];
+       // 1. Саволлар базаси (Ҳар бир йўналиш учун алоҳида)
+const quizData = {
+    "Tarix": [
+        { q: "Amir Temur qachon tug'ilgan?", o: ["1336-yil", "1342-yil", "1405-yil", "1300-yil"], c: 0 },
+        { q: "O'zbekiston mustaqilligi qachon?", o: ["1990-yil", "1991-yil", "1992-yil", "1989-yil"], c: 1 },
+        { q: "Alisher Navoiy qaysi шаҳарда туғилган?", o: ["Samarqand", "Hirot", "Andijon", "Xiva"], c: 1 },
+        { q: "Жалолиддин Мангуберди қайси давлат ҳукмдори эди?", o: ["Темурийлар", "Хоразмшоҳлар", "Қорахонийлар", "Шайбонийлар"], c: 1 }
+    ],
+    "Huquq": [
+        { q: "Konstitutsiya kuni qachon?", o: ["8-dekabr", "1-sentyabr", "21-mart", "10-dekabr"], c: 0 },
+        { q: "Ўзбекистон байроғида нечта юлдуз бор?", o: ["10 та", "14 та", "12 та", "15 та"], c: 2 },
+        { q: "Давлат бошлиғи ким?", o: ["Бош вазир", "Сенат раиси", "Президент", "Олий Мажлис раиси"], c: 2 }
+    ],
+    "Geografiya": [
+        { q: "Eng uzun daryomiz?", o: ["Sirdaryo", "Amudaryo", "Zarafshon", "Norin"], c: 1 },
+        { q: "Дунёдаги энг катта қитъа?", o: ["Африка", "Америка", "Осиё", "Антарктида"], c: 2 }
+    ]
+};
 
-        function openMode(cat) {
-            alert(cat + " yo'nalishi tanlandi. 10 ta kunlik testni boshlaymizmi?");
-            startQuiz(cat);
-        }
+// 2. Ўзгарувчилар
+let currentQuestions = []; // Ҳозирги йўналиш саволлари
+let qIndex = 0;           // Нечанчи саволда тургани
+let score = 0;            // Тўплаган балл
+let totalPoints = 0;      // Умумий балл (унвон учун)
+let timerInterval;
 
-        function startQuiz(cat) {
-            document.getElementById('quiz-modal').style.display = 'flex';
-            // Бу ерга саволларни юклаш функцияси келади
-            loadQuestion();
-        }
+// 3. Тестни бошлаш
+function openMode(cat) {
+    if (!quizData[cat] || quizData[cat].length === 0) {
+        alert("Бу йўналишда саволлар тез кунда қўшилади!");
+        return;
+    }
 
-        function loadQuestion() {
-            document.getElementById('question-text').innerText = "O'zbekiston poytaxti qayer?";
-            const box = document.getElementById('options-box');
-            box.innerHTML = `
-                <button class="option-btn" onclick="answer(true)">Toshkent</button>
-                <button class="option-btn" onclick="answer(false)">Samarqand</button>
-                <button class="option-btn" onclick="answer(false)">Buxoro</button>
-                <button class="option-btn" onclick="answer(false)">Xiva</button>
-            `;
-        }
+    // Саволларни тасодифий тартибда олиш ва 10 тасини танлаш
+    currentQuestions = [...quizData[cat]].sort(() => Math.random() - 0.5).slice(0, 10);
+    qIndex = 0;
+    score = 0;
+    
+    document.getElementById('quiz-modal').style.display = 'flex';
+    displayQuestion();
+}
 
-        function answer(isCorrect) {
-            if(isCorrect) {
-                userScore += 1;
-                correctAnswers += 1;
-                alert("To'g'ri!");
-            } else {
-                alert("Xato!");
-            }
-            updateUI();
-            document.getElementById('quiz-modal').style.display = 'none';
-        }
+// 4. Саволни экранга чиқариш
+function displayQuestion() {
+    if (qIndex >= currentQuestions.length) {
+        finishQuiz();
+        return;
+    }
 
-        function updateUI() {
-            document.getElementById('total-score').innerText = userScore;
-            
-            // Unvon va progress
-            let rankIdx = Math.floor(correctAnswers / 100);
-            if(rankIdx > 5) rankIdx = 5;
-            
-            document.getElementById('rank-name').innerText = ranks[rankIdx];
-            let progress = correctAnswers % 100;
-            document.getElementById('progress-fill').style.width = progress + "%";
-            document.getElementById('progress-text').innerText = progress;
+    const data = currentQuestions[qIndex];
+    document.getElementById('question-text').innerText = (qIndex + 1) + ". " + data.q;
+    
+    const box = document.getElementById('options-box');
+    box.innerHTML = ""; // Эски тугмаларни ўчириш
+
+    data.o.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = "option-btn";
+        btn.innerText = opt;
+        btn.onclick = () => checkAnswer(i, data.c);
+        box.appendChild(btn);
+    });
+
+    startTimer();
+}
+
+// 5. Жавобни текшириш
+function checkAnswer(selected, correct) {
+    clearInterval(timerInterval);
+    if (selected === correct) {
+        score++;
+        totalPoints++;
+    }
+    qIndex++;
+    displayQuestion(); // Кейинги саволга ўтиш
+}
+
+// 6. Таймер (10 секунд)
+function startTimer() {
+    let left = 10;
+    document.getElementById('timer').innerText = left;
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+        left--;
+        document.getElementById('timer').innerText = left;
+        if (left <= 0) {
+            clearInterval(timerInterval);
+            qIndex++;
+            displayQuestion();
         }
+    }, 1000);
+}
+
+// 7. Тестни якунлаш
+function finishQuiz() {
+    clearInterval(timerInterval);
+    document.getElementById('quiz-modal').style.display = 'none';
+    alert("Табриклаймиз! Сиз 10 та саволдан " + score + " тасига тўғри жавоб бердингиз.");
+    updateUI();
+}
+
+// 8. Интерфейсни янгилаш
+function updateUI() {
+    document.getElementById('total-score').innerText = totalPoints;
+    
+    // Унвонлар тизими (Ҳар 100 баллда янги унвон)
+    const ranks = ["Novichok", "Uchenik", "Student", "Bakalavr", "Magistr", "Professor"];
+    let rankIdx = Math.floor(totalPoints / 100);
+    if(rankIdx > 5) rankIdx = 5;
+    
+    document.getElementById('rank-name').innerText = ranks[rankIdx];
+    
+    let progress = totalPoints % 100;
+    document.getElementById('progress-fill').style.width = progress + "%";
+    document.getElementById('progress-text').innerText = progress;
+}
     </script>
 </body>
 </html>
