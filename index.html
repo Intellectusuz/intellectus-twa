@@ -1,38 +1,190 @@
-const quizData = {
-    "Tarix": [
-        { question: "Amir Temur qachon tug'ilgan?", options: ["1336-yil", "1342-yil", "1405-yil"], correct: 0 },
-        { question: "O'zbekiston mustaqilligi qachon e'lon qilingan?", options: ["1990-yil", "1991-yil", "1992-yil"], correct: 1 },
-        { question: "Alisher Navoiy qaysi asrda yashagan?", options: ["XIV asr", "XV asr", "XVI asr"], correct: 1 },
-        { question: "Zahiriddin Muhammad Bobur qayerda tug'ilgan?", options: ["Samarqand", "Andijon", "Namangan"], correct: 1 },
-        { question: "Buyuk ipak yo'li qayerdan boshlangan?", options: ["Xitoy", "Hindiston", "Eron"], correct: 0 },
-        { question: "Mirzo Ulug'bek qayerda rasadxona qurgan?", options: ["Buxoro", "Samarqand", "Xiva"], correct: 1 },
-        { question: "Qadimgi Xorazm davlati poytaxti?", options: ["Urganch", "Kat", "Xiva"], correct: 1 },
-        { question: "Jaloliddin Manguberdi kimga qarshi jang qilgan?", options: ["Ruslarga", "Mo'g'ullarga", "Arablarga"], correct: 1 },
-        { question: "Ikkinchi jahon urushi qachon tugagan?", options: ["1941-yil", "1945-yil", "1950-yil"], correct: 1 },
-        { question: "Amir Temur necha yil hukmronlik qilgan?", options: ["25 yil", "35 yil", "45 yil"], correct: 1 }
-    ],
-    "Huquq": [
-        { question: "O'zbekiston Konstitutsiyasi qachon qabul qilingan?", options: ["8-dekabr", "1-sentyabr", "10-dekabr"], correct: 0 },
-        { question: "Oliy Majlis qonun chiqaruvchi organmi?", options: ["Ha", "Yo'q", "Faqat Senat"], correct: 0 },
-        { question: "O'zbekiston bayrog'ida nechta yulduz bor?", options: ["10 ta", "14 ta", "12 ta"], correct: 2 },
-        { question: "Inson huquqlari deklaratsiyasi qachon qabul qilingan?", options: ["1945-yil", "1948-yil", "1950-yil"], correct: 1 },
-        { question: "Voyaga yetgan fuqaro necha yoshdan saylash huquqiga ega?", options: ["16 yosh", "18 yosh", "21 yosh"], correct: 1 },
-        { question: "Davlat boshlig'i kim?", options: ["Bosh vazir", "Prezident", "Senat raisi"], correct: 1 },
-        { question: "Poytaxtimiz qaysi shahar?", options: ["Samarqand", "Buxoro", "Toshkent"], correct: 2 },
-        { question: "O'zbekiston Respublikasi madhiyasi muallifi?", options: ["Abdulla Oripov", "Erkin Vohidov", "Zulfiya"], correct: 0 },
-        { question: "Fuqarolarning burchi nima?", options: ["Soliq to'lash", "Vatanni himoya qilish", "Hammasi"], correct: 2 },
-        { question: "Oila munosabatlari qaysi kodeks bilan tartibga solinadi?", options: ["Fuqarolik", "Oila kodeksi", "Mehnat"], correct: 1 }
-    ],
-    "Geografiya": [
-        { question: "O'zbekistonning eng uzun daryosi qaysi?", options: ["Amudaryo", "Sirdaryo", "Zarafshon"], correct: 0 },
-        { question: "Dunyodagi eng katta qit'a qaysi?", options: ["Osiyo", "Afrika", "Amerika"], correct: 0 },
-        { question: "Dunyodagi eng chuqur ko'l?", options: ["Orol", "Baykal", "Kaspiy"], correct: 1 },
-        { question: "O'zbekiston necha davlat bilan chegaradosh?", options: ["4 ta", "5 ta", "6 ta"], correct: 1 },
-        { question: "Eng baland cho'qqi qaysi?", options: ["Everest", "K2", "G'alaba"], correct: 0 },
-        { question: "Quyoshga eng yaqin sayyora?", options: ["Yer", "Mars", "Merkuriy"], correct: 2 },
-        { question: "Afrika qit'asining eng katta cho'li?", options: ["Gobi", "Sahroi Kabir", "Namib"], correct: 1 },
-        { question: "Yer sayyorasining nechta okeani bor?", options: ["4 ta", "5 ta", "3 ta"], correct: 1 },
-        { question: "Yaponiyaning poytaxti?", options: ["Seul", "Pekin", "Tokio"], correct: 2 },
-        { question: "Eng kichik davlat?", options: ["Monako", "Vatikan", "San-Marino"], correct: 1 }
-    ]
-};
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelectus Uzbekistan</title>
+    <style>
+        :root {
+            --gold-main: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --noir-bg: radial-gradient(circle at center, #2c2c2c 0%, #000000 100%);
+        }
+
+        body {
+            margin: 0; font-family: 'Segoe UI', sans-serif;
+            background: var(--noir-bg); color: white;
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+        }
+
+        /* Header */
+        .main-header { width: 100%; text-align: center; padding: 20px 0; }
+        .logo-3d {
+            font-size: 35px; font-weight: 900; margin: 0;
+            background: var(--gold-main); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; text-transform: uppercase;
+        }
+        .author { color: #d4af37; font-size: 12px; margin-top: 5px; opacity: 0.8; }
+
+        /* Stats Card */
+        .stats-container {
+            display: flex; gap: 20px; margin: 20px 0;
+            border: 2px solid #d4af37; padding: 15px 40px; border-radius: 15px;
+            background: rgba(0,0,0,0.5); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+        .stat-item span { color: #fcf6ba; font-weight: bold; font-size: 20px; }
+
+        /* Grid */
+        .categories-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px; width: 90%; max-width: 800px; margin-top: 20px;
+        }
+
+        .cat-card {
+            background: rgba(255,255,255,0.05); border: 2px solid #d4af37;
+            padding: 25px; border-radius: 15px; cursor: pointer;
+            text-align: center; font-weight: bold; transition: 0.3s;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .cat-card:hover {
+            background: var(--gold-main); color: black;
+            transform: translateY(-5px); box-shadow: 0 5px 15px rgba(212,175,55,0.4);
+        }
+
+        /* Quiz Modal */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98); justify-content: center; align-items: center; z-index: 1000;
+        }
+        .modal-content {
+            background: #111; border: 2px solid #d4af37; padding: 40px;
+            border-radius: 25px; width: 90%; max-width: 500px; text-align: center;
+        }
+        #timer { font-size: 40px; color: #fcf6ba; font-weight: bold; margin-bottom: 20px; }
+        .question-text { font-size: 22px; margin-bottom: 30px; line-height: 1.5; }
+        .options-grid { display: flex; flex-direction: column; gap: 12px; }
+        .opt-btn {
+            padding: 15px; border: 1px solid #d4af37; background: transparent;
+            color: white; border-radius: 10px; cursor: pointer; font-size: 16px; transition: 0.2s;
+        }
+        .opt-btn:hover { background: #d4af37; color: black; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <h1 class="logo-3d">INTELECTUS UZBEKISTAN</h1>
+        <div class="author">created by “A.K.Djuginisov”</div>
+    </header>
+
+    <div class="stats-container">
+        <div class="stat-item">Ball: <span id="score-val">0</span></div>
+        <div class="stat-item">Unvon: <span id="rank-val">Novichok</span></div>
+    </div>
+
+    <div class="categories-grid">
+        <div class="cat-card" onclick="startQuiz('Tarix')">📜 Tarix</div>
+        <div class="cat-card" onclick="startQuiz('Huquq')">⚖️ Huquq</div>
+        <div class="cat-card" onclick="startQuiz('Geografiya')">🌍 Geografiya</div>
+    </div>
+
+    <div id="quiz-modal" class="modal">
+        <div class="modal-content">
+            <div id="timer">10</div>
+            <div id="q-text" class="question-text">Савол юкланмоқда...</div>
+            <div id="options-box" class="options-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = {
+            "Tarix": [
+                { q: "Amir Temur qachon tug'ilgan?", o: ["1336-yil", "1342-yil", "1405-yil"], c: 0 },
+                { q: "O'zbekiston mustaqilligi qachon?", o: ["1990-yil", "1991-yil", "1992-yil"], c: 1 },
+                { q: "Alisher Navoiy nechanchi asrda yashagan?", o: ["14-asr", "15-asr", "16-asr"], c: 1 }
+            ],
+            "Huquq": [
+                { q: "Konstitutsiya kuni qachon?", o: ["8-dekabr", "1-sentyabr", "21-mart"], c: 0 },
+                { q: "O'zbekiston bayrog'ida nechta yulduz bor?", o: ["10 ta", "14 ta", "12 ta"], c: 2 }
+            ],
+            "Geografiya": [
+                { q: "Eng uzun daryomiz?", o: ["Amudaryo", "Sirdaryo", "Zarafshon"], c: 0 },
+                { q: "Eng baland cho'qqi?", o: ["Everest", "Hazrati Sulton", "G'alaba"], c: 1 }
+            ]
+        };
+
+        let score = 0;
+        let timerInterval;
+        let currentQuestions = [];
+        let qIndex = 0;
+
+        function startQuiz(cat) {
+            // Саволларни аралаштириш (тасодифий қилиш)
+            currentQuestions = [...quizData[cat]].sort(() => Math.random() - 0.5);
+            qIndex = 0;
+            document.getElementById('quiz-modal').style.display = 'flex';
+            showNextQuestion();
+        }
+
+        function showNextQuestion() {
+            if (qIndex >= currentQuestions.length) {
+                alert("Йўналишдаги барча саволлар тугади!");
+                closeQuiz();
+                return;
+            }
+
+            const data = currentQuestions[qIndex];
+            document.getElementById('q-text').innerText = data.q;
+            const box = document.getElementById('options-box');
+            box.innerHTML = "";
+
+            data.o.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = "opt-btn";
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(i, data.c);
+                box.appendChild(btn);
+            });
+
+            startTimer();
+        }
+
+        function checkAnswer(selected, correct) {
+            clearInterval(timerInterval);
+            if (selected === correct) {
+                score += 10;
+                updateStats();
+            }
+            qIndex++;
+            showNextQuestion();
+        }
+
+        function startTimer() {
+            let left = 10;
+            document.getElementById('timer').innerText = left;
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                left--;
+                document.getElementById('timer').innerText = left;
+                if (left <= 0) {
+                    clearInterval(timerInterval);
+                    qIndex++;
+                    showNextQuestion();
+                }
+            }, 1000);
+        }
+
+        function updateStats() {
+            document.getElementById('score-val').innerText = score;
+            const rank = document.getElementById('rank-val');
+            if (score >= 50) rank.innerText = "Uchenik";
+            if (score >= 100) rank.innerText = "Student";
+            if (score >= 200) rank.innerText = "Bakalavr";
+        }
+
+        function closeQuiz() {
+            clearInterval(timerInterval);
+            document.getElementById('quiz-modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
