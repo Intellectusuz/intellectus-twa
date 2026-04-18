@@ -1,98 +1,83 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Intellectus Uzbekistan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelectus Uzbekistan</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
         <header class="main-header">
-            <h1 class="gold-text-gradient">Intellectus Uzbekistan</h1>
+            <h1 class="logo-3d">INTELECTUS UZBEKISTAN</h1>
+            <p class="author">created by “A.K.Djuginisov”</p>
+            
+            <div class="user-card">
+                <div class="avatar-wrapper">
+                    <img src="https://via.placeholder.com/100" alt="Avatar" class="user-avatar">
+                </div>
+                <div class="user-meta">
+                    <h2 id="user-display-name">Foydalanuvchi nomi</h2>
+                    <div class="score-display">
+                        <span class="cup-icon">🏆</span>
+                        <span id="current-points">0</span> ball
+                    </div>
+                </div>
+            </div>
+
+            <div class="rank-container gold-border">
+                <p>Hozirgi holat: <strong id="rank-title">Novichok</strong></p>
+                <div class="progress-bar">
+                    <div id="rank-progress" style="width: 0%;"></div>
+                </div>
+                <small>Keyingi unvonga: <span id="progress-percent">0</span>%</small>
+            </div>
         </header>
 
-        <div class="profile-section">
-            <div class="glass-card profile-bar">
-                <div class="avatar-container">
-                    <img id="user_avatar" src="unnamed.jpg" onerror="this.src='https://ui-avatars.com/api/?name=User&background=d4af37&color=000'" alt="Avatar">
-                </div>
-                <div class="user-info">
-                    <div id="user_name" class="gold-text">Загрузка...</div>
-                    <div class="user-stats">🏆 Total IQ: <span id="user_points">0</span> pts</div>
-                </div>
-                <div class="country-tag">🇺🇿</div>
-            </div>
-        </div>
+        <div class="split-layout">
+            <aside class="left-panel">
+                <section class="rating-section">
+                    <h3>Top 10 Reyting</h3>
+                    <ul id="leaderboard">
+                        <li class="rank-1 gold-gradient">1. Ism - Bakalavr (1500)</li>
+                        <li class="rank-2 silver-gradient">2. Ism - Student (1200)</li>
+                        <li class="rank-3 bronze-gradient">3. Ism - Uchenik (900)</li>
+                    </ul>
+                </section>
 
-        <div class="achievement-section">
-            <div class="glass-card achievement-card">
-                <div class="label">ЛИЧНОЕ ДОСТИЖЕНИЕ</div>
-                <div id="rank-title" class="rank-name">ЮРИСТ-НОВИЧОК</div>
-                <div class="progress-wrapper">
-                    <div class="progress-track">
-                        <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                <section class="super-quiz-section">
+                    <button class="super-quiz-btn">СУПЕР САВОЛ-ЖАВОБ</button>
+                    <div class="super-winners">
+                        <div class="winner-slot gold-gradient">1</div>
+                        <div class="winner-slot silver-gradient">2</div>
+                        <div class="winner-slot bronze-gradient">3</div>
                     </div>
-                    <div class="progress-details">
-                        Усвоение знаний: <span id="progress-percent">0%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </section>
+            </aside>
 
-        <div class="main-grid">
-            <div class="grid-column">
-                <h2 class="column-title">СПИСОК КАТЕГОРИЙ</h2>
-                <div class="category-list">
-                    <button class="cat-btn" onclick="openQuiz('law')"><i>⚖️</i> Юридика</button>
-                    <button class="cat-btn" onclick="openQuiz('history')"><i>📜</i> История</button>
-                    <button class="cat-btn" onclick="openQuiz('lit')"><i>📚</i> Литература</button>
-                    <button class="cat-btn" onclick="openQuiz('geo')"><i>🌍</i> География</button>
-                    <button class="cat-btn" onclick="openQuiz('astro')"><i>🚀</i> Астрономия</button>
-                    <button class="cat-btn" onclick="openQuiz('phys')"><i>⚛️</i> Физика</button>
-                    <button class="cat-btn" onclick="openQuiz('chem')"><i>🧪</i> Химия</button>
+            <section class="right-panel">
+                <h3>Yo'nalishlar</h3>
+                <div class="categories-grid">
+                    <div class="cat-card" onclick="selectCategory('Huquqshunoslik')">⚖️ Huquqshunoslik</div>
+                    <div class="cat-card" onclick="selectCategory('Tarix')">📜 Tarix</div>
+                    <div class="cat-card" onclick="selectCategory('Geografiya')">🌍 Geografiya</div>
+                    <div class="cat-card" onclick="selectCategory('Adabiyot')">📚 Adabiyot</div>
+                    <div class="cat-card" onclick="selectCategory('Fizika')">⚛️ Fizika</div>
+                    <div class="cat-card" onclick="selectCategory('Ximiya')">🧪 Ximiya</div>
+                    <div class="cat-card" onclick="selectCategory('Astronimaya')">🌠 Astronimaya</div>
                 </div>
-            </div>
-
-            <div class="grid-column">
-                <h2 class="column-title">СУПЕР-ТИТУЛ</h2>
-                <div class="glass-card sidebar-card">
-                    <p class="small-gold-title">ПРЕТЕНДЕНТЫ НА "ПРОФЕССОР"</p>
-                    <div class="podium">
-                        <div class="podium-item p2">
-                            <img src="unnamed.jpg">
-                            <span>Amir_T</span>
-                        </div>
-                        <div class="podium-item p1">
-                            <div class="crown">👑</div>
-                            <img src="unnamed.jpg">
-                            <span>Brain_Uz</span>
-                        </div>
-                        <div class="podium-item p3">
-                            <img src="unnamed.jpg">
-                            <span>Lola_M</span>
-                        </div>
-                    </div>
-                    <div class="status-info">
-                        85% completion, 1250 pts needed
-                    </div>
-                    <button class="gold-action-btn" onclick="tg.showAlert('Доступно раз в месяц!')">Пройти Супер-Тест</button>
-                </div>
-            </div>
+            </section>
         </div>
     </div>
 
     <div id="quiz-modal" class="modal">
         <div class="modal-content">
-            <div class="quiz-header">
-                <div id="quiz-timer" class="timer">10</div>
-            </div>
-            <h3 id="question-text">Загрузка...</h3>
-            <div id="answer-options" class="options-stack"></div>
+            <div id="timer">10</div>
+            <h4 id="question-text">Savol matni shu yerda chiqadi?</h4>
+            <div class="options-grid" id="options-container"></div>
         </div>
     </div>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
