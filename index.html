@@ -5,289 +5,209 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intelectus Uzbekistan</title>
     <style>
+        /* ДИЗАЙН: НУАР ВА ОЛТИН 3D */
         :root {
-            --gold-grad: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --noir-bg: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
-            --glass: rgba(255, 255, 255, 0.05);
+            --gold: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --bg: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
         }
 
         body {
-            background: var(--noir-bg); color: white; font-family: 'Segoe UI', sans-serif;
+            background: var(--bg); color: white; font-family: 'Arial', sans-serif;
             margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center;
         }
 
-        /* 3D Gold Logo */
-        .header { text-align: center; margin-top: 20px; }
+        /* LOGO 3D */
+        .header { text-align: center; padding: 25px 0; }
         .logo-3d {
-            font-size: 42px; font-weight: 900; margin: 0;
-            background: var(--gold-grad); -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(4px 4px 5px rgba(0,0,0,0.8));
-            text-transform: uppercase; letter-spacing: 2px;
+            font-size: 40px; font-weight: 900; margin: 0;
+            background: var(--gold); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; text-transform: uppercase;
+            filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.8));
         }
-        .creator { color: #d4af37; font-size: 14px; font-weight: 300; margin-top: -5px; }
+        .creator { color: #d4af37; font-size: 14px; margin-top: -5px; }
 
-        /* User Info Section */
+        /* USER STATS */
         .top-nav {
             width: 90%; max-width: 1000px; display: flex; justify-content: space-between;
-            align-items: flex-start; margin-top: 30px;
+            align-items: center; margin: 20px 0; border: 1px solid #d4af37;
+            padding: 15px; border-radius: 15px; background: rgba(255,255,255,0.05);
         }
-        .user-info { display: flex; align-items: center; gap: 15px; }
-        .avatar-border {
-            width: 70px; height: 70px; border-radius: 50%;
-            padding: 3px; background: var(--gold-grad);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-        }
-        .avatar-border img { width: 100%; height: 100%; border-radius: 50%; background: #000; }
-        .user-details h3 { margin: 0; font-size: 18px; color: #fcf6ba; }
-        .score-box { display: flex; align-items: center; gap: 5px; color: #d4af37; font-weight: bold; }
+        .user-info { display: flex; align-items: center; gap: 10px; }
+        .avatar { width: 55px; height: 55px; border-radius: 50%; border: 2px solid gold; padding: 2px; }
+        .rank-card { text-align: right; min-width: 200px; }
+        .progress-bar { width: 100%; height: 8px; background: #333; border-radius: 4px; margin-top: 5px; overflow: hidden; }
+        #progress-fill { height: 100%; background: var(--gold); width: 0%; transition: 0.5s; }
 
-        /* Rank Progress */
-        .rank-card {
-            border: 2px solid #d4af37; padding: 15px; border-radius: 12px;
-            background: var(--glass); min-width: 250px; text-align: center;
-        }
-        .progress-bar {
-            width: 100%; height: 10px; background: #333; border-radius: 5px; margin-top: 10px;
-            overflow: hidden; border: 1px solid #555;
-        }
-        #progress-fill { height: 100%; background: var(--gold-grad); width: 0%; transition: 0.5s; }
-
-        /* Split Layout */
-        .main-container {
-            display: flex; width: 95%; max-width: 1200px; gap: 20px; margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        /* Left Side: Rating & Super Quiz */
+        /* SPLIT LAYOUT */
+        .main-container { display: flex; width: 95%; max-width: 1100px; gap: 20px; margin-top: 20px; flex-wrap: wrap; }
         .left-panel { flex: 1; min-width: 300px; }
-        .panel-box {
-            background: var(--glass); border: 1px solid #d4af37; 
-            padding: 20px; border-radius: 15px; margin-bottom: 20px;
-        }
-        .rank-item {
-            display: flex; justify-content: space-between; padding: 10px;
-            border-radius: 8px; margin-bottom: 8px; font-weight: bold;
-        }
-        .gold { background: var(--gold-grad); color: black; }
-        .silver { background: linear-gradient(135deg, #bdc3c7, #2c3e50); color: white; }
-        .bronze { background: linear-gradient(135deg, #cd7f32, #593315); color: white; }
+        .right-panel { flex: 2; min-width: 350px; }
 
-        /* Right Side: Categories */
-        .right-panel { flex: 2; min-width: 320px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+        .panel-box { background: rgba(255,255,255,0.03); border: 1px solid #d4af37; padding: 20px; border-radius: 15px; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .cat-card {
-            background: rgba(255,255,255,0.03); border: 1.5px solid #d4af37;
-            padding: 20px; border-radius: 15px; cursor: pointer; text-align: center;
-            transition: 0.3s; font-weight: bold;
+            background: rgba(255,255,255,0.05); border: 1px solid #d4af37; padding: 20px;
+            border-radius: 12px; cursor: pointer; text-align: center; font-weight: bold; transition: 0.3s;
         }
-        .cat-card:hover { background: var(--gold-grad); color: black; transform: scale(1.03); }
+        .cat-card:hover { background: var(--gold); color: black; transform: scale(1.05); }
 
-        /* Modal / Quiz UI */
-        .modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); justify-content: center; align-items: center; z-index: 1000;
-        }
-        .quiz-container {
-            background: #111; border: 2px solid #d4af37; padding: 30px;
-            border-radius: 20px; width: 90%; max-width: 500px; text-align: center;
-        }
-        .timer { font-size: 32px; color: gold; font-weight: bold; margin-bottom: 15px; }
-        .option-btn {
-            display: block; width: 100%; padding: 15px; margin: 10px 0;
-            background: transparent; color: white; border: 1px solid #d4af37;
-            border-radius: 10px; cursor: pointer; transition: 0.2s;
-        }
-        .option-btn:hover { background: #d4af37; color: black; }
+        /* RATING COLORS */
+        .gold-item { background: var(--gold); color: black; padding: 8px; border-radius: 5px; margin-bottom: 5px; font-weight: bold; }
+        .silver-item { background: #C0C0C0; color: black; padding: 8px; border-radius: 5px; margin-bottom: 5px; }
+        .bronze-item { background: #CD7F32; color: black; padding: 8px; border-radius: 5px; margin-bottom: 5px; }
+
+        /* QUIZ MODAL */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); justify-content: center; align-items: center; z-index: 9999; }
+        .quiz-content { background: #111; border: 2px solid #d4af37; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; text-align: center; }
+        .timer { font-size: 35px; color: gold; font-weight: bold; margin-bottom: 15px; }
+        .opt-btn { display: block; width: 100%; padding: 12px; margin: 8px 0; background: transparent; color: white; border: 1px solid gold; border-radius: 8px; cursor: pointer; font-size: 16px; }
+        .opt-btn:hover { background: gold; color: black; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <header class="header">
-        <h1 class="logo-3d">Intelectus Uzbekistan</h1>
+    <div class="header">
+        <h1 class="logo-3d">INTELECTUS UZBEKISTAN</h1>
         <div class="creator">created by “A.K.Djuginisov”</div>
-    </header>
+    </div>
 
     <div class="top-nav">
         <div class="user-info">
-            <div class="avatar-border">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User">
-            </div>
-            <div class="user-details">
-                <h3 id="username">Foydalanuvchi</h3>
-                <div class="score-box">🏆 <span id="total-score">0</span> ball</div>
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="avatar">
+            <div>
+                <div id="username" style="font-weight: bold; color: gold;">Artur</div>
+                <div style="color: #ccc;">🏆 <span id="total-score">0</span> балл</div>
             </div>
         </div>
         <div class="rank-card">
-            <div>Hozirgi holat: <strong id="rank-name">Novichok</strong></div>
+            <div>Унвон: <strong id="rank-name" style="color: gold;">Novichok</strong></div>
             <div class="progress-bar"><div id="progress-fill"></div></div>
-            <small>Keyingi unvonga: <span id="progress-text">0</span>%</small>
+            <small><span id="progress-percent">0</span>% кейинги босқичга</small>
         </div>
     </div>
 
-    <main class="main-container">
+    <div class="main-container">
         <div class="left-panel">
             <div class="panel-box">
-                <h3 style="color: gold; text-align: center;">TOP 10 REYTING</h3>
-                <div class="rank-item gold">1. Artur — 1500 ball</div>
-                <div class="rank-item silver">2. Sardor — 1200 ball</div>
-                <div class="rank-item bronze">3. Malika — 900 ball</div>
-                <div class="rank-item" style="border: 1px solid #555;">4. Temur — 850 ball</div>
+                <h3 style="color: gold; text-align: center;">ТОП 10 РЕЙТИНГ</h3>
+                <div class="gold-item">1. Ажинияз — 540 балл</div>
+                <div class="silver-item">2. Малика — 420 балл</div>
+                <div class="bronze-item">3. Сардор — 380 балл</div>
+                <div style="padding: 5px; border-bottom: 1px solid #444;">4. Темур — 310 балл</div>
             </div>
-
-            <div class="panel-box" style="text-align: center;">
-                <button onclick="startQuiz('Super')" style="background: var(--gold-grad); border: none; padding: 15px; border-radius: 10px; font-weight: bold; width: 100%; cursor: pointer;">
-                    СУПЕР САВОЛ-ЖАВОБ
-                </button>
-                <p><small>G'oliblar fotosi:</small></p>
-                <div style="display: flex; justify-content: space-around;">
-                    <div class="avatar-border" style="width: 40px; height: 40px;"></div>
-                    <div class="avatar-border" style="width: 40px; height: 40px;"></div>
-                    <div class="avatar-border" style="width: 40px; height: 40px;"></div>
-                </div>
-            </div>
+            <button onclick="alert('Супер саволлар тез кунда!')" style="width: 100%; padding: 15px; background: var(--gold); border: none; border-radius: 12px; font-weight: bold; cursor: pointer;">СУПЕР САВОЛ-ЖАВОБ</button>
         </div>
 
         <div class="right-panel">
-            <h3 style="color: gold;">YO'NALISHLAR</h3>
-            <div class="grid">
-                <div class="cat-card" onclick="openMode('Huquq')">⚖️ Huquqшунослик</div>
-                <div class="cat-card" onclick="openMode('Tarix')">📜 Tarix</div>
-                <div class="cat-card" onclick="openMode('Geografiya')">🌍 Geografiya</div>
-                <div class="cat-card" onclick="openMode('Adabiyot')">📚 Adabiyot</div>
-                <div class="cat-card" onclick="openMode('Fizika')">⚛️ Fizika</div>
-                <div class="cat-card" onclick="openMode('Kimyo')">🧪 Kimyo</div>
-                <div class="cat-card" onclick="openMode('Astronomiya')">🌠 Astronomiya</div>
+            <div class="panel-box">
+                <h3 style="color: gold;">ЙЎНАЛИШЛАР</h3>
+                <div class="grid">
+                    <div class="cat-card" onclick="startTest('Huquq')">⚖️ Ҳуқуқ</div>
+                    <div class="cat-card" onclick="startTest('Tarix')">📜 Тарих</div>
+                    <div class="cat-card" onclick="startTest('Geografiya')">🌍 География</div>
+                    <div class="cat-card" onclick="alert('Тез кунда!')">📚 Адабиёт</div>
+                </div>
             </div>
         </div>
-    </main>
+    </div>
 
     <div id="quiz-modal" class="modal">
-        <div class="quiz-container">
+        <div class="quiz-content">
             <div id="timer" class="timer">10</div>
-            <h3 id="question-text">Savol yuklanmoqda...</h3>
+            <h3 id="q-text">Савол...</h3>
             <div id="options-box"></div>
         </div>
     </div>
 
     <script>
-       // 1. Саволлар базаси (Ҳар бир йўналиш учун алоҳида)
-const quizData = {
-    "Tarix": [
-        { q: "Amir Temur qachon tug'ilgan?", o: ["1336-yil", "1342-yil", "1405-yil", "1300-yil"], c: 0 },
-        { q: "O'zbekiston mustaqilligi qachon?", o: ["1990-yil", "1991-yil", "1992-yil", "1989-yil"], c: 1 },
-        { q: "Alisher Navoiy qaysi шаҳарда туғилган?", o: ["Samarqand", "Hirot", "Andijon", "Xiva"], c: 1 },
-        { q: "Жалолиддин Мангуберди қайси давлат ҳукмдори эди?", o: ["Темурийлар", "Хоразмшоҳлар", "Қорахонийлар", "Шайбонийлар"], c: 1 }
-        { q: "G'aznaviylar davlatiga kim asos solgan?", o: ["Mahmud G'aznaviy", "Alp-tegin", "Subuk-tegin", "Oltun-tosh"], c: 1 },
-    ],
-    "Huquq": [
-        { q: "Konstitutsiya kuni qachon?", o: ["8-dekabr", "1-sentyabr", "21-mart", "10-dekabr"], c: 0 },
-        { q: "Ўзбекистон байроғида нечта юлдуз бор?", o: ["10 та", "14 та", "12 та", "15 та"], c: 2 },
-        { q: "Давлат бошлиғи ким?", o: ["Бош вазир", "Сенат раиси", "Президент", "Олий Мажлис раиси"], c: 2 }
-    ],
-    "Geografiya": [
-        { q: "Eng uzun daryomiz?", o: ["Sirdaryo", "Amudaryo", "Zarafshon", "Norin"], c: 1 },
-        { q: "Дунёдаги энг катта қитъа?", o: ["Африка", "Америка", "Осиё", "Антарктида"], c: 2 }
-    ]
-};
+        const quizData = {
+            "Tarix": [
+                { q: "Амир Темур қачон туғилган?", o: ["1336-йил", "1342-йил", "1405-йил", "1300-йил"], c: 0 },
+                { q: "Ўзбекистон мустақиллиги қачон?", o: ["1990-йил", "1991-йил", "1992-йил", "1989-йил"], c: 1 },
+                { q: "Алишер Навоий қайси асрда яшаган?", o: ["14-аср", "15-аср", "16-аср", "13-аср"], c: 1 }
+            ],
+            "Huquq": [
+                { q: "Конституция куни қачон?", o: ["8-декабр", "1-сентябр", "21-март", "10-декабр"], c: 0 },
+                { q: "Давлат бошлиғи ким?", o: ["Бош вазир", "Президент", "Сенат раиси", "Халқ"], c: 1 }
+            ],
+            "Geografiya": [
+                { q: "Энг узун дарёмиз?", o: ["Амударё", "Сирдарё", "Зарафшон", "Норин"], c: 0 },
+                { q: "Дунёдаги энг катта қитъа?", o: ["Африка", "Осиё", "Европа", "Америка"], c: 1 }
+            ]
+        };
 
-// 2. Ўзгарувчилар
-let currentQuestions = []; // Ҳозирги йўналиш саволлари
-let qIndex = 0;           // Нечанчи саволда тургани
-let score = 0;            // Тўплаган балл
-let totalPoints = 0;      // Умумий балл (унвон учун)
-let timerInterval;
+        let currentQ = [];
+        let index = 0;
+        let score = 0;
+        let total = 0;
+        let timer;
 
-// 3. Тестни бошлаш
-function openMode(cat) {
-    if (!quizData[cat] || quizData[cat].length === 0) {
-        alert("Бу йўналишда саволлар тез кунда қўшилади!");
-        return;
-    }
-
-    // Саволларни тасодифий тартибда олиш ва 10 тасини танлаш
-    currentQuestions = [...quizData[cat]].sort(() => Math.random() - 0.5).slice(0, 10);
-    qIndex = 0;
-    score = 0;
-    
-    document.getElementById('quiz-modal').style.display = 'flex';
-    displayQuestion();
-}
-
-// 4. Саволни экранга чиқариш
-function displayQuestion() {
-    if (qIndex >= currentQuestions.length) {
-        finishQuiz();
-        return;
-    }
-
-    const data = currentQuestions[qIndex];
-    document.getElementById('question-text').innerText = (qIndex + 1) + ". " + data.q;
-    
-    const box = document.getElementById('options-box');
-    box.innerHTML = ""; // Эски тугмаларни ўчириш
-
-    data.o.forEach((opt, i) => {
-        const btn = document.createElement('button');
-        btn.className = "option-btn";
-        btn.innerText = opt;
-        btn.onclick = () => checkAnswer(i, data.c);
-        box.appendChild(btn);
-    });
-
-    startTimer();
-}
-
-// 5. Жавобни текшириш
-function checkAnswer(selected, correct) {
-    clearInterval(timerInterval);
-    if (selected === correct) {
-        score++;
-        totalPoints++;
-    }
-    qIndex++;
-    displayQuestion(); // Кейинги саволга ўтиш
-}
-
-// 6. Таймер (10 секунд)
-function startTimer() {
-    let left = 10;
-    document.getElementById('timer').innerText = left;
-    clearInterval(timerInterval);
-    timerInterval = setInterval(() => {
-        left--;
-        document.getElementById('timer').innerText = left;
-        if (left <= 0) {
-            clearInterval(timerInterval);
-            qIndex++;
-            displayQuestion();
+        function startTest(cat) {
+            if(!quizData[cat]) return;
+            currentQ = [...quizData[cat]].sort(() => Math.random() - 0.5);
+            index = 0;
+            score = 0;
+            document.getElementById('quiz-modal').style.display = 'flex';
+            nextQ();
         }
-    }, 1000);
-}
 
-// 7. Тестни якунлаш
-function finishQuiz() {
-    clearInterval(timerInterval);
-    document.getElementById('quiz-modal').style.display = 'none';
-    alert("Табриклаймиз! Сиз 10 та саволдан " + score + " тасига тўғри жавоб бердингиз.");
-    updateUI();
-}
+        function nextQ() {
+            if(index >= currentQ.length) {
+                finish();
+                return;
+            }
+            const data = currentQ[index];
+            document.getElementById('q-text').innerText = (index + 1) + ". " + data.q;
+            const box = document.getElementById('options-box');
+            box.innerHTML = "";
+            data.o.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = "opt-btn";
+                btn.innerText = opt;
+                btn.onclick = () => check(i, data.c);
+                box.appendChild(btn);
+            });
+            startTimer();
+        }
 
-// 8. Интерфейсни янгилаш
-function updateUI() {
-    document.getElementById('total-score').innerText = totalPoints;
-    
-    // Унвонлар тизими (Ҳар 100 баллда янги унвон)
-    const ranks = ["Novichok", "Uchenik", "Student", "Bakalavr", "Magistr", "Professor"];
-    let rankIdx = Math.floor(totalPoints / 100);
-    if(rankIdx > 5) rankIdx = 5;
-    
-    document.getElementById('rank-name').innerText = ranks[rankIdx];
-    
-    let progress = totalPoints % 100;
-    document.getElementById('progress-fill').style.width = progress + "%";
-    document.getElementById('progress-text').innerText = progress;
-}
+        function check(sel, cor) {
+            clearInterval(timer);
+            if(sel === cor) {
+                score++;
+                total++;
+                updateUI();
+            }
+            index++;
+            nextQ();
+        }
+
+        function startTimer() {
+            let s = 10;
+            document.getElementById('timer').innerText = s;
+            clearInterval(timer);
+            timer = setInterval(() => {
+                s--;
+                document.getElementById('timer').innerText = s;
+                if(s <= 0) { clearInterval(timer); index++; nextQ(); }
+            }, 1000);
+        }
+
+        function finish() {
+            clearInterval(timer);
+            document.getElementById('quiz-modal').style.display = 'none';
+            alert("Тест тугади! Сиз " + score + " балл тўпладингиз.");
+        }
+
+        function updateUI() {
+            document.getElementById('total-score').innerText = total;
+            const ranks = ["Novichok", "Uchenik", "Student", "Bakalavr", "Magistr", "Professor"];
+            let rIdx = Math.floor(total / 100);
+            if(rIdx > 5) rIdx = 5;
+            document.getElementById('rank-name').innerText = ranks[rIdx];
+            let prog = total % 100;
+            document.getElementById('progress-fill').style.width = prog + "%";
+            document.getElementById('progress-percent').innerText = prog;
+        }
     </script>
 </body>
 </html>
