@@ -7,63 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header class="header">
-        <h1 class="logo-3d">INTELECTUS UZBEKISTAN</h1>
-        <div class="creator">created by Djuginisov Ajiniyaz Kenesbaevich</div>
-    </header>
-
-    <div class="top-nav">
-        <div class="user-info">
-            <div class="avatar-border">
-                <img src="unnamed.jpg" alt="Ajiniyaz">
-            </div>
-            <div class="user-details">
-                <h3 id="username">Foydalanuvchi</h3>
-                <div class="score-box">🏆 <span id="total-score">0</span> ball</div>
-            </div>
-        </div>
-        <div class="rank-card">
-            <div>Hozirgi holat: <strong id="rank-name">Stajor</strong></div>
-            <div class="progress-bar"><div id="progress-fill"></div></div>
-            <small>Keyingi unvonga: <span id="progress-percent">0</span>%</small>
-        </div>
-    </div>
-
-    <main class="main-container">
-        <aside class="left-panel">
-            <div class="panel-box">
-                <h3 style="color: gold; text-align: center;">TOP 10 REYTING</h3>
-                <div id="rating-list">
-                    <div class="rank-item gold">1. Ajiniyaz — 1 540 ball</div>
-                    <div class="rank-item silver">2. Artur — 420 ball</div>
-                    <div class="rank-item bronze">3. Boss — 380 ball</div>
-                </div>
-            </div>
-            <button class="super-btn" onclick="alert('Tez kunda!')">Super SAVOL-JAVOB</button>
-        </aside>
-
-        <section class="right-panel">
-            <h3 style="color: gold;">YO'NALISHLAR</h3>
-            <div class="grid">
-                <div class="cat-card" onclick="startQuiz('Huquqshunoslik')">📚 Huquqshunoslik</div>
-                <div class="cat-card" onclick="startQuiz('Tarix')">📚 Tarix</div>
-                <div class="cat-card" onclick="startQuiz('Geografiya')">📚 Geografiya</div>
-                <div class="cat-card" onclick="startQuiz('Adabiyot')">📚 Adabiyot</div>
-                <div class="cat-card" onclick="startQuiz('Fizika')">📚 Fizika</div>
-                <div class="cat-card" onclick="startQuiz('Kimyo')">📚 Kimyo</div>                
-                <div class="cat-card" onclick="startQuiz('Astronomiya')">📚 Astronomiya</div>                
-            </div>
-        </section>
-    </main>
-
-    <div id="quiz-modal" class="modal">
-        <div class="quiz-content">
-            <div id="timer" class="timer">10</div>
-            <h3 id="q-text">Savol yuklanmoqda...</h3>
-            <div id="options-box"></div>
-        </div>
-    </div>
+    <div id="app"></div>
 
     <script src="questions.js"></script>
     <script src="app.js"></script>
